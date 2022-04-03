@@ -17,6 +17,11 @@
     "@layeredapps/organizations": "latest",
     "@layeredapps/stripe-subscriptions": "latest"
   },
+  "devDependencies": {
+    "@faker-js/faker": "latest",
+    "puppeteer": "latest",
+    "mocha": "latest"
+  },
   "dashboard": {
     "title": "Example web app",
     "modules": [
