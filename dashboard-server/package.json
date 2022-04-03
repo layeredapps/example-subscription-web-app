@@ -15,6 +15,7 @@
     "@layeredapps/stripe-subscriptions": "latest"
   },
   "devDependencies": {
+    "ngrok": "latest",
     "@faker-js/faker": "latest",
     "puppeteer": "latest",
     "mocha": "latest"
