@@ -44,8 +44,8 @@ jobs:
         FAST_START: true
         DASHBOARD_SERVER: "http://localhost:9000"
         PORT: 9000
-        GENERATE_SITEMAP_TXT: false
-        GENERATE_API_TXT: false   
+        GENERATE_SITEMAP_TXT: true
+        GENERATE_API_TXT: true   
         GENERATE_RESPONSE: true
         GENERATE_SCREENSHOTS: true
         SCREENSHOT_LANGUAGES: "en"
