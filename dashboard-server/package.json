@@ -1,0 +1,36 @@
+{
+  "name": "example-subscription-web-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --ignore 'node_modules/**/*' --no-colors --timeout 1800000 --slow 1800000 --exit $(find . -name '*.test.js') --grep screenshots"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "12.18.4",
+    "npm": "6.14.6"
+  },
+  "dependencies": {
+    "@layeredapps/dashboard": "latest",
+    "@layeredapps/organizations": "latest",
+    "@layeredapps/stripe-subscriptions": "latest"
+  },
+  "dashboard": {
+    "title": "Example web app",
+    "modules": [
+      "@layeredapps/organizations",
+      "@layeredapps/stripe-subscriptions"
+    ],
+    "server": [
+      "@layeredapps/dashboard/src/server/forward-api-request.js"
+    ],
+    "proxy": [
+      "@layeredapps/dashboard/src/proxy/x-account.js",
+      "@layeredapps/organizations/src/proxy/x-memberships.js",
+      "@layeredapps/organizations/src/proxy/x-organizations.js",
+      "@layeredapps/stripe-subscriptions/src/proxy/x-subscriptions.js"
+    ]
+  }
+}

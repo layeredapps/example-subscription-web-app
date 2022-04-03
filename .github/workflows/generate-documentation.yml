@@ -1,0 +1,72 @@
+name: generate-documentation
+
+on: [push]
+
+jobs:
+  generate-documentation:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Lint JavaScript source with standard.js
+      run: |
+        if [ ! -z "$NPM_PROXY" ]; then
+          npm --registry=$NPM_PROXY install standard -g
+        else
+          npm install standard -g
+        fi        
+        standard
+    - name: Configure git
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+    - name: Set up project
+      run: |
+        cd application-server
+        npm install -D --silent --no-audit --no-fund &>/dev/null 
+        npm install sqlite3 --silent --no-save --no-audit --no-fund &>/dev/null 
+        cd ../dashboard-server
+        npm install -D --silent --no-audit --no-fund &>/dev/null 
+        npm install sqlite3 --silent --no-save --no-audit --no-fund &>/dev/null 
+    - name: Generate documentation
+      run: |
+        export RESPONSE_PATH=`pwd`/documentation/example-subscription-web-app
+        export SCREENSHOT_PATH=`pwd`/documentation/screenshots/example-subscription-web-app
+        cd dashboard-server
+        node --expose-gc ./node_modules/.bin/mocha --timeout 480000 --slow 480000 --recursive --extension .test.js . 2>&1 | tee tests.txt
+      env:
+        NODE_ENV: testing
+        FAST_START: true
+        DASHBOARD_SERVER: "http://localhost:9000"
+        PORT: 9000
+        GENERATE_SITEMAP_TXT: false
+        GENERATE_API_TXT: false   
+        GENERATE_RESPONSE: true
+        GENERATE_SCREENSHOTS: true
+        SCREENSHOT_LANGUAGES: "en"
+        APPLICATION_SERVER: "http://localhost:9213"
+        APPLICATION_SERVER_PORT: 9213
+        APPLICATION_SERVER_TOKEN: "this is the token"
+        START_APPLICATION_SERVER: "false"
+        STRIPE_KEY: ${{ secrets.EXAMPLE_STRIPE_KEY }}
+        STRIPE_PUBLISHABLE_KEY: ${{ secrets.EXAMPLE_STRIPE_PUBLISHABLE_KEY }}
+        STRIPE_JS: false
+        NGROK: true
+        SUBSCRIPTION_WEBHOOK_ENDPOINT_SECRET: "replaced-at-runtime"
+        REQUIRE_SUBSCRIPTION: true
+        REQUIRE_PAYMENT: true
+        REQUIRE_PAYMENT_AUTHORIZATION: true
+        DISABLE_PAYOUT_TESTS: true
+    - name: Deploy to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        external_repository: "layeredapps/layeredapps.github.io"
+        personal_token: ${{ secrets.DEPLOY_TOKEN }}
+        publish_dir: documentation
+        publish_branch: master
+        keep_files: true
