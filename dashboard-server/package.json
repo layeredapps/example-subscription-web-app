@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha --ignore 'node_modules/**/*' --no-colors --timeout 1800000 --slow 1800000 --exit $(find . -name '*.test.js') --grep screenshots"
-  },
   "author": "",
   "license": "ISC",
   "engines": {
