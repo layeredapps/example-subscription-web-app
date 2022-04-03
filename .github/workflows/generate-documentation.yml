@@ -33,7 +33,7 @@ jobs:
         cd ../dashboard-server
         npm install -D --silent --no-audit --no-fund &>/dev/null 
         npm install sqlite3 --silent --no-save --no-audit --no-fund &>/dev/null 
-    - name: Generate documentation
+    - name: Run merged test suite
       run: |
         export RESPONSE_PATH=`pwd`/documentation/example-subscription-web-app
         export SCREENSHOT_PATH=`pwd`/documentation/screenshots/example-subscription-web-app
