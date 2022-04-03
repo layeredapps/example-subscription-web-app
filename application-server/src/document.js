@@ -1,5 +1,4 @@
 const { Sequelize, Model, DataTypes } = require('sequelize')
-const crypto = require('crypto')
 const validExtensions = [
   'bash', 'coffee', 'cpp', 'css', 'pas',
   'diff', 'erl', 'go', 'hs', 'html', 'ini',
@@ -100,7 +99,7 @@ async function remove (documentid) {
   return true
 }
 
-async function create (document, documentid, public, accountid, organizationid) {
+async function create (document, documentid, isPublic, accountid, organizationid) {
   if (!document || !document.length) {
     throw new Error('invalid-document')
   }
@@ -139,7 +138,7 @@ async function create (document, documentid, public, accountid, organizationid) 
     document,
     accountid,
     organizationid,
-    public,
+    public: isPublic
   })
 }
 
@@ -157,10 +156,4 @@ async function generateUniqueKey () {
       return text
     }
   }
-}
-
-function md5 (str) {
-  const md5sum = crypto.createHash('md5')
-  md5sum.update(str)
-  return md5sum.digest('hex')
 }

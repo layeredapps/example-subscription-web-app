@@ -123,11 +123,10 @@ describe('example-subscription-web-app', () => {
           while (true) {
             try {
               const cardContainerChildren = await page.evaluate(async () => {
-                var cardContainer = document.getElementById('card-container')
+                const cardContainer = document.getElementById('card-container')
                 return cardContainer && cardContainer.children.length
               })
               if (cardContainerChildren) {
-                await page.screenshot({ path: `${__dirname}/ss1.png`, type: 'png' })
                 return
               }
             } catch (error) {
@@ -199,11 +198,10 @@ describe('example-subscription-web-app', () => {
           while (true) {
             try {
               const cardContainerChildren = await page.evaluate(async () => {
-                var cardContainer = document.getElementById('card-container')
+                const cardContainer = document.getElementById('card-container')
                 return cardContainer && cardContainer.children.length
               })
               if (cardContainerChildren) {
-                await page.screenshot({ path: `${__dirname}/ss1.png`, type: 'png' })
                 return
               }
             } catch (error) {
@@ -221,11 +219,10 @@ describe('example-subscription-web-app', () => {
           while (true) {
             try {
               const customeridChildren = await page.evaluate(async () => {
-                var customerid = document.getElementById('customerid')
+                const customerid = document.getElementById('customerid')
                 return customerid && customerid.options.length
               })
               if (customeridChildren) {
-                await page.screenshot({ path: `${__dirname}/ss1.png`, type: 'png' })
                 return
               }
             } catch (error) {
@@ -236,7 +233,7 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             const postCreator = await page.evaluate(() => {
-              var postCreator = document.getElementById('post-creator')
+              const postCreator = document.getElementById('post-creator')
               return postCreator && postCreator.style.display ? postCreator.style.display : 'none'
             })
             if (postCreator === 'block') {
@@ -279,7 +276,7 @@ describe('example-subscription-web-app', () => {
     req.waitFormComplete = async (page) => {
       while (true) {
         const postContent = await page.evaluate(() => {
-          var postContent = document.getElementById('post-content')
+          const postContent = document.getElementById('post-content')
           return postContent.style.display
         })
         if (postContent === 'block') {
@@ -367,7 +364,7 @@ describe('example-subscription-web-app', () => {
     req.waitFormComplete = async (page) => {
       while (true) {
         const postContent = await page.evaluate(() => {
-          var postContent = document.getElementById('post-content')
+          const postContent = document.getElementById('post-content')
           return postContent.style.display
         })
         if (postContent === 'block') {
@@ -409,7 +406,7 @@ describe('example-subscription-web-app', () => {
     req.waitBefore = async (page) => {
       while (true) {
         const postCreator = await page.evaluate(() => {
-          var postCreator = document.getElementById('post-creator')
+          const postCreator = document.getElementById('post-creator')
           return postCreator ? postCreator.style.display : null
         })
         if (postCreator === 'block') {
@@ -421,7 +418,7 @@ describe('example-subscription-web-app', () => {
     req.waitAfter = async (page) => {
       while (true) {
         const postContent = await page.evaluate(() => {
-          var postContent = document.getElementById('post-content')
+          const postContent = document.getElementById('post-content')
           return postContent ? postContent.style.display : null
         })
         if (postContent === 'block') {
@@ -450,8 +447,8 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             const postLink = await page.evaluate(() => {
-              var postLinks = document.getElementsByTagName('a')
-              for (var i = 0, len = postLinks.length; i < len; i++) {
+              const postLinks = document.getElementsByTagName('a')
+              for (let i = 0, len = postLinks.length; i < len; i++) {
                 if (postLinks[i].innerHTML === 'readme.md') {
                   return true
                 }
@@ -470,7 +467,7 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             const postContent = await page.evaluate(() => {
-              var postContent = document.getElementById('post-content')
+              const postContent = document.getElementById('post-content')
               return postContent.style.display
             })
             if (postContent === 'block') {

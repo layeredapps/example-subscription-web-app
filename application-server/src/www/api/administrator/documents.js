@@ -1,3 +1,5 @@
+const Document = require('../../../document.js')
+
 module.exports = {
   get: async (req) => {
     let accountid

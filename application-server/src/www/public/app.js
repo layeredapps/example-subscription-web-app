@@ -1,13 +1,13 @@
-var elements = {}
+const elements = {}
 
 window.onload = function () {
-  var cacheElements = [
+  const cacheElements = [
     /* navigation */ 'create-button', 'list-button', 'organization-list-button',
     /* content */ 'list', 'organization-list', 'post-content', 'post-creator',
     /* viewing posts  */ 'view', 'view-organization', 'view-organization-post-owner', 'postid-1', 'postid-2', 'postid-3', 'line-numbers', 'post-preview', 'delete-1', 'delete-3',
     /* listing posts  */ 'list-table', 'organization-list-table', 'no-posts-1', 'no-posts-2',
     /* creating posts */ 'post-textarea', 'documentid', 'language', 'public', 'organization', 'organization-container', 'submit-button']
-  for (var i = 0, len = cacheElements.length; i < len; i++) {
+  for (let i = 0, len = cacheElements.length; i < len; i++) {
     elements[cacheElements[i]] = document.getElementById(cacheElements[i])
   }
   // main navigation buttons
@@ -54,12 +54,12 @@ window.onload = function () {
     }
   }
   elements.language.onchange = function () {
-    var extension = this.value
+    const extension = this.value
     if (!extension) {
       return
     }
-    var newid = elements.documentid.value
-    var oldPeriod = newid.indexOf('.')
+    let newid = elements.documentid.value
+    const oldPeriod = newid.indexOf('.')
     if (oldPeriod > -1) {
       newid = newid.substring(0, oldPeriod)
     }
@@ -70,19 +70,19 @@ window.onload = function () {
   listPosts()
   // sets up your organization's posts
   if (window.user.organizations && window.user.organizations.length) {
-    for (i = 0, len = window.user.organizations.length; i < len; i++) {
+    for (let i = 0, len = window.user.organizations.length; i < len; i++) {
       listPosts(window.user.organizations[i].organizationid)
-      var option = document.createElement('option')
+      const option = document.createElement('option')
       option.value = window.user.organizations[i].organizationid
       option.text = window.user.organizations[i].name
       elements.organization.appendChild(option)
     }
   }
   // display the initial content
-  var content = window.sessionStorage.getItem('content')
+  const content = window.sessionStorage.getItem('content')
   showContent(content || 'post-creator')
   if (content === 'post-content') {
-    var post = window.sessionStorage.getItem('post')
+    const post = window.sessionStorage.getItem('post')
     if (post) {
       showPostContents(JSON.parse(post))
     }
@@ -90,7 +90,7 @@ window.onload = function () {
 }
 
 function listPosts (organizationid) {
-  var path = organizationid ? '/api/user/organization-documents?organizationid=' + organizationid : '/api/user/documents?accountid=' + window.user.account.accountid
+  const path = organizationid ? '/api/user/organization-documents?organizationid=' + organizationid : '/api/user/documents?accountid=' + window.user.account.accountid
   return send(path, null, 'GET', function (error, posts) {
     if (error) {
       return showMessage(error.message, 'error')
@@ -99,7 +99,7 @@ function listPosts (organizationid) {
       document.getElementById('organization-column').style.display = 'none'
     }
     if (posts && posts.length) {
-      for (var i = 0, len = posts.length; i < len; i++) {
+      for (let i = 0, len = posts.length; i < len; i++) {
         renderPostRow(!organizationid, posts[i])
       }
     }
@@ -108,8 +108,8 @@ function listPosts (organizationid) {
 
 function loadDocument (event) {
   event.preventDefault()
-  var link = event.target
-  var path = '/api/user/document?documentid=' + link.innerHTML
+  const link = event.target
+  const path = '/api/user/document?documentid=' + link.innerHTML
   elements['post-preview'].innerHTML = ''
   elements['line-numbers'].innerHTML = ''
   return send(path, null, 'GET', function (error, result) {
@@ -122,29 +122,29 @@ function loadDocument (event) {
 }
 
 function saveNewDocument () {
-  var postSettings = {}
+  const postSettings = {}
   if (window.user.organizations && window.user.organizations.length) {
     if (elements.organization.selectedIndex > 0) {
       postSettings.organizationid = elements.organization.options[elements.organization.selectedIndex].value
     }
   }
-  var isPublic = elements.public = elements.public || document.getElementById('public')
+  const isPublic = elements.public = elements.public || document.getElementById('public')
   if (isPublic.checked) {
     postSettings.public = true
   }
   if (elements.documentid.value) {
     postSettings.documentid = elements.documentid.value
     // validate here
-    var parts = postSettings.documentid.split('.')
+    const parts = postSettings.documentid.split('.')
     if (parts.length > 2) {
       return showMessage('Filenames must be alphanumeric, with optional supported file extensions.')
     } else if (parts.length === 2) {
       if (/[^a-zA-Z0-9]+/.test(parts[0])) {
         return showMessage('Filenames must be alphanumeric, with optional supported file extensions.')
       }
-      var extension = parts[parts.length - 1].toLowerCase()
-      var found = false
-      for (var i = 0, len = elements.language.options.length; i < len; i++) {
+      const extension = parts[parts.length - 1].toLowerCase()
+      let found = false
+      for (let i = 0, len = elements.language.options.length; i < len; i++) {
         found = elements.language.options[i].value === extension
         if (found) {
           break
@@ -174,13 +174,13 @@ function saveNewDocument () {
 }
 
 function deletePost (event) {
-  var button = event.target
-  var path = '/api/user/delete-document?documentid=' + button.documentid
+  const button = event.target
+  const path = '/api/user/delete-document?documentid=' + button.documentid
   return send(path, null, 'DELETE', function (error) {
     if (error) {
       return showMessage(error.message, 'error')
     }
-    var personal = document.getElementById('personal-' + button.documentid)
+    const personal = document.getElementById('personal-' + button.documentid)
     if (personal) {
       personal.parentNode.removeChild(personal)
       if (elements['list-table'].rows.length === 1) {
@@ -191,7 +191,7 @@ function deletePost (event) {
         elements['no-posts-1'].style.display = 'none'
       }
     }
-    var organization = document.getElementById('organization-' + button.documentid)
+    const organization = document.getElementById('organization-' + button.documentid)
     if (organization) {
       organization.parentNode.removeChild(organization)
       if (elements['organization-list-table'].rows.length === 1) {
@@ -227,7 +227,7 @@ function showPostContents (post) {
     elements['view-organization-post-owner'].style.display = 'none'
     elements['postid-2'].innerHTML = post.documentid
   }
-  var high
+  let high
   try {
     if (post.language === 'txt') {
       high = { value: htmlEscape(post.document) }
@@ -248,37 +248,37 @@ function showPostContents (post) {
 }
 
 function renderPostRow (personal, meta) {
-  var table = document.getElementById(personal ? 'list-table' : 'organization-list-table')
-  var row = table.insertRow(table.rows.length)
+  const table = document.getElementById(personal ? 'list-table' : 'organization-list-table')
+  const row = table.insertRow(table.rows.length)
   row.id = (personal ? 'personal-' : 'organization-') + meta.documentid
-  var keyLink = document.createElement('a')
+  const keyLink = document.createElement('a')
   keyLink.id = meta.documentid
   keyLink.innerHTML = meta.documentid
   keyLink.onclick = loadDocument
   keyLink.href = '/document/' + meta.documentid
-  var keyCell = row.insertCell(0)
+  const keyCell = row.insertCell(0)
   keyCell.appendChild(keyLink)
-  var createdCell = row.insertCell(1)
+  const createdCell = row.insertCell(1)
   createdCell.innerHTML = meta.createdAt
-  var nextCell = 2
+  let nextCell = 2
   if (personal && window.user.organizations && window.user.organizations.length) {
-    var organizationCell = row.insertCell(2)
+    const organizationCell = row.insertCell(2)
     if (meta.organizationid) {
       organizationCell.innerHTML = 'yes'
     }
     nextCell = 3
   }
-  var publicCell = row.insertCell(nextCell)
+  const publicCell = row.insertCell(nextCell)
   if (meta.public) {
-    var publicLink = document.createElement('a')
+    const publicLink = document.createElement('a')
     publicLink.href = 'https://' + window.publicDomain + '/document/' + window.user.dashboard.split('://')[1] + '/' + meta.documentid
     publicLink.innerHTML = 'yes'
     publicLink.target = '_blank'
     publicCell.appendChild(publicLink)
   }
   if (personal) {
-    var deleteCell = row.insertCell(nextCell + 1)
-    var deleteButton = document.createElement('button')
+    const deleteCell = row.insertCell(nextCell + 1)
+    const deleteButton = document.createElement('button')
     deleteButton.innerHTML = 'delete'
     deleteButton.documentid = meta.documentid
     deleteButton.onclick = deletePost
@@ -308,30 +308,30 @@ function showMessage (message, css) {
 }
 
 function addLineNumbers (lineCount) {
-  var h = ['<ol>']
-  for (var i = 0; i < lineCount; i++) {
+  const h = ['<ol>']
+  for (let i = 0; i < lineCount; i++) {
     h.push('<li></li>')
   }
   elements['line-numbers'].innerHTML = h.join('') + '</ol>'
 }
 
 function send (url, data, method, callback) {
-  var postData
+  let postData
   if (data) {
     postData = new window.FormData()
-    for (var key in data) {
+    for (const key in data) {
       postData.append(key, data[key])
     }
   }
-  var x
+  let x
   if (window.useXMLHttpRequest || typeof XMLHttpRequest !== 'undefined') {
     window.useXMLHttpRequest = true
     x = new window.XMLHttpRequest()
   } else if (window.compatibleActiveXObject !== null) {
     x = new window.ActiveXObject(window.compatibleActiveXObject)
   } else {
-    var xhrversions = ['MSXML2.XmlHttp.5.0', 'MSXML2.XmlHttp.4.0', 'MSXML2.XmlHttp.3.0', 'MSXML2.XmlHttp.2.0', 'Microsoft.XmlHttp']
-    for (var i = 0, len = xhrversions.length; i < len; i++) {
+    const xhrversions = ['MSXML2.XmlHttp.5.0', 'MSXML2.XmlHttp.4.0', 'MSXML2.XmlHttp.3.0', 'MSXML2.XmlHttp.2.0', 'Microsoft.XmlHttp']
+    for (let i = 0, len = xhrversions.length; i < len; i++) {
       try {
         x = new window.ActiveXObject(xhrversions[i])
         window.compatibleActiveXObject = xhrversions[i]
@@ -346,7 +346,7 @@ function send (url, data, method, callback) {
     if (!x.responseText) {
       return callback()
     }
-    var json
+    let json
     switch (x.status) {
       case 200:
         try {
