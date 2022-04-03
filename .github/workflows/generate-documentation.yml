@@ -38,7 +38,7 @@ jobs:
         export RESPONSE_PATH=`pwd`/documentation/example-subscription-web-app
         export SCREENSHOT_PATH=`pwd`/documentation/screenshots/example-subscription-web-app
         cd dashboard-server
-        node --expose-gc ./node_modules/.bin/mocha --timeout 480000 --slow 480000 --recursive --extension .test.js . 2>&1 | tee tests.txt
+        node --expose-gc --max-old-space-size=2048 ./node_modules/.bin/mocha --timeout 480000 --slow 480000 --recursive --extension .test.js . 2>&1 | tee tests.txt
       env:
         NODE_ENV: testing
         FAST_START: true
