@@ -5,7 +5,9 @@
   "author": "",
   "main": "haste",
   "dependencies": {
-    "multiparty": "^4.2.1"
+    "multiparty": "^4.2.1",
+    "sequelize": "^6.18.0",
+    "sqlite3": "^5.0.2"
   },
   "engines": {
     "node": ">=16.0",

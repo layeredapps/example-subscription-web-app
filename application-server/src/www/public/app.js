@@ -87,6 +87,14 @@ window.onload = function () {
       showPostContents(JSON.parse(post))
     }
   }
+  // list table
+  if (elements['list-table'].rows.length === 1) {
+    elements['list-table'].style.display = 'none'
+    elements['no-posts-1'].style.display = ''
+  } else {
+    elements['list-table'].style.display = ''
+    elements['no-posts-1'].style.display = 'none'
+  }
 }
 
 function listPosts (organizationid) {
@@ -297,6 +305,14 @@ function showContent (type) {
   elements['organization-list'].style.display = type === 'organization-list' ? 'block' : 'none'
   elements['post-content'].style.display = type === 'post-content' ? 'block' : 'none'
   elements['post-creator'].style.display = type === 'post-creator' ? 'block' : 'none'
+  // list table
+  if (elements['list-table'].rows.length === 1) {
+    elements['list-table'].style.display = 'none'
+    elements['no-posts-1'].style.display = ''
+  } else {
+    elements['list-table'].style.display = ''
+    elements['no-posts-1'].style.display = 'none'
+  }
 }
 
 function htmlEscape (s) {

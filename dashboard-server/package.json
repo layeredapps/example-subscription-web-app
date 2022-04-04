@@ -12,13 +12,14 @@
   "dependencies": {
     "@layeredapps/dashboard": "latest",
     "@layeredapps/organizations": "latest",
-    "@layeredapps/stripe-subscriptions": "latest"
+    "@layeredapps/stripe-subscriptions": "latest",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
-    "ngrok": "latest",
     "@faker-js/faker": "latest",
-    "puppeteer": "latest",
-    "mocha": "latest"
+    "mocha": "latest",
+    "ngrok": "latest",
+    "puppeteer": "latest"
   },
   "dashboard": {
     "title": "Example web app",
@@ -27,13 +28,13 @@
       "@layeredapps/stripe-subscriptions"
     ],
     "server": [
-      "@layeredapps/dashboard/src/server/forward-api-request.js"
+      "@layeredapps/dashboard/src/server/forward-api-requests.js"
     ],
     "proxy": [
       "@layeredapps/dashboard/src/proxy/x-account.js",
       "@layeredapps/organizations/src/proxy/organizations/x-memberships.js",
       "@layeredapps/organizations/src/proxy/organizations/x-organizations.js",
-      "@layeredapps/stripe-subscriptions/src/proxy/subscriptions/x-subscriptions.jssubscriptions/"
+      "@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js"
     ]
   }
 }
