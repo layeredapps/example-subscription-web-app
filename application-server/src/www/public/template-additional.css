@@ -24,3 +24,4 @@ body,
 .template .menu-group:active .menu-trigger { background-color: #2c4b4b }
 .template .dropdown-menu a { color: rgba(255, 255, 255, 0.75) !important }
 .template .dropdown-menu a:hover { color: rgba(0, 0, 0, 0.75) !important }
+.home .template .navigation { display: none }

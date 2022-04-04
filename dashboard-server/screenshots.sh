@@ -1,3 +1,4 @@
+NODE_ENV=testing \
 GENERATE_SCREENSHOTS=true \
 SCREENSHOT_PATH=/home/appstore-project/workspace/dashboard/docs-dashboard/example-subscription-web-app \
 PORT=9000 \
