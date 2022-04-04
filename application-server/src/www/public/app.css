@@ -6,7 +6,7 @@ menu div { display: inline-block }
 menu button { outline: 0; background-color: transparent; border: none; display: block; float: left; white-space: nowrap; color: inherit; margin: 0 0.5rem 0 0.5rem; height: 3rem; line-height: 3rem; padding: 0 0.75rem; opacity: 0.8; font-size: 0.9rem; cursor: pointer; color: rgba(255, 255, 255, 0.75); border-radius: 0.5rem }
 menu button:hover { background-color: #000; color: #FFF }
 menu button:focus { color: #FFF }
-menu button.active { background-color: #002B36; color: #FFF }
+menu button.active { background-color: #000; color: #FFF }
 menu button img { height: 1rem; width: 1rem; margin: 0.9rem 1rem 0 0; display: block; float: left }
 /* list table */
 h2 { color: rgba(255, 255, 255, 0.5); font-weight: normal }

@@ -1,30 +1,37 @@
 .navigation,
 body,
-body.entry { background-color: #002B36 !important; color: rgba(255, 255, 255, 0.75) }
-th { background-color: rgba(255, 255, 255, 0.5) !important; border: rgba(255, 255, 255, 0.5) !important; color: rgba(0, 0, 0, 0.75) }
-td a { color: #FFF !important }
+body.entry { background-color: #002B36; color: rgba(255, 255, 255, 0.75) }
+.entry .container a { color: rgba(255, 255, 255, 0.5) }
+.entry .container a:hover { color: #FFF }
+th { background-color: rgba(255, 255, 255, 0.5); border: rgba(255, 255, 255, 0.5); color: rgba(0, 0, 0, 0.75) }
+td a { color: #FFF }
 h1, 
 h2,
 h3,
 p,
 td,
-a { color: rgba(255, 255, 255, 0.75) !important }
-label { color: rgba(255, 255, 255, 0.75) !important }
-.list-table th,
-.object-table th { background-color: rgba(255, 255, 255, 0.5) !important; color: #002B36 !important }
-.object-table th,
-.object-table td,
-.list-table th,
-.list-table td  { border-color: rgba(255, 255, 255, 0.5) !important }
-.list-table tr:nth-child(2n-1) td { background-color: rgba(0, 0, 0, 0.25) !important }
-a.pure-button,
-button.pure-button { border-color: #666; background-image: none; background-color: rgba(0, 0, 0, 0.5) !important; color: rgba(255, 255, 255, 0.5) !important }
-a.pure-button-primary,
-button.pure-button-primary { border-color: #333; background-image: none; background-color: rgba(0, 0, 0, 0.75) !important; color: rgba(255, 255, 255, 0.75) !important }
-a.pure-button:hover,
-button.pure-button:hover { border-color: #333; background-image: none; background-color: rgba(0, 0, 0, 0.25) !important; color: rgba(255, 255, 255, 0.75) !important }
-a.pure-button-primary:hover,
-button.pure-button-primary:hover { border-color: #000; background-image: none; background-color: #000 !important; color: #FFF !important }
-.success { color: #FFF !important }
-select { background-color: #FFF }
-select option  { color: #000; background-color: #FFF }
+a { color: rgba(255, 255, 255, 0.75) }
+.container .entry a:hover { color: #FFF }
+.container label { color: rgba(255, 255, 255, 0.75) }
+.container .list-table th,
+.container .object-table th { background-color: rgba(255, 255, 255, 0.5); color: #002B36 }
+.container .object-table th,
+.container .object-table td,
+.container .list-table th,
+.container .list-table td  { border-color: rgba(255, 255, 255, 0.5) }
+.container .list-table tr:nth-child(2n-1) td { background-color: rgba(0, 0, 0, 0.25) }
+.container .button { border-color: transparent; background-image: none; background-color: rgba(0, 0, 0, 0.5); color: rgba(255, 255, 255, 0.5) }
+.container .button:hover { border-color: rgba(255, 255, 255, 0.25); background-color: rgba(0, 0, 0, 0.25); color: rgba(255, 255, 255, 0.75) }
+.container .button:focus { background-color: rgba(0, 0, 0, 0.75); border-color: rgba(255, 255, 255, 0.5) }
+.container .success { color: #FFF }
+.container select { background-color: #FFF }
+.container select option  { color: #000; background-color: #FFF }
+.container label:focus, .container input:focus { box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5) }
+.container .field select, .field input[type="number"], .field input[type="text"], .field input[type="password"] { background-color: rgba(0, 0, 0, 0.25); color: rgba( 255, 255, 255, 0.75) }
+.field input[type=number]:active,
+.field input[type=number]:focus,
+.field input[type=text]:active,
+.field input[type=text]:focus,
+.field input[type=password]:active,
+.field input[type=password]:focus { background-color: rgba(0, 0, 0, 0.5) }
+.container .message { background-color: rgba(255, 255, 255, 0.75); padding: 0.5rem; display: inline-block }
