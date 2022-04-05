@@ -66,5 +66,5 @@ jobs:
         external_repository: "layeredapps/layeredapps.github.io"
         personal_token: ${{ secrets.DEPLOY_TOKEN }}
         publish_dir: documentation
-        publish_branch: master
+        publish_branch: main
         keep_files: true
