@@ -1,0 +1,53 @@
+
+
+  example-subscription-web-app
+    ✔ administrator creates product and plan (screenshots)
+    1) user 1 registers and must select plan
+    2) user 1 selects plan and must enter billing information
+    3) user 1 registers and subscribes
+    4) user 1 cancels subscription
+    ✔ user 1 creates post
+    ✔ user 1 creates organization
+    ✔ user 2 creates shared post
+    5) user 1 views shared post
+
+
+  4 passing (26m)
+  5 failing
+
+  1) example-subscription-web-app
+       user 1 registers and must select plan:
+     Error: Timeout of 480000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/appstore-project/workspace/dashboard/example-subscription-web-app/dashboard-server/screenshots.test.js)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  2) example-subscription-web-app
+       user 1 selects plan and must enter billing information:
+     Error: Timeout of 480000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/appstore-project/workspace/dashboard/example-subscription-web-app/dashboard-server/screenshots.test.js)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  3) example-subscription-web-app
+       user 1 registers and subscribes:
+     Error: Timeout of 480000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/appstore-project/workspace/dashboard/example-subscription-web-app/dashboard-server/screenshots.test.js)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+  4) example-subscription-web-app
+       user 1 cancels subscription:
+     Error: invalid-planid
+      at Object.req.<computed> [as post] (node_modules/@layeredapps/dashboard/test-helper.js:207:15)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at async Object.createSubscription (node_modules/@layeredapps/stripe-subscriptions/test-helper.js:724:23)
+      at async Context.<anonymous> (screenshots.test.js:255:5)
+
+  5) example-subscription-web-app
+       user 1 views shared post:
+     Error: invalid-planid
+      at Object.req.<computed> [as post] (node_modules/@layeredapps/dashboard/test-helper.js:207:15)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at async Object.createSubscription (node_modules/@layeredapps/stripe-subscriptions/test-helper.js:724:23)
+      at async Context.<anonymous> (screenshots.test.js:384:5)
+
+
+

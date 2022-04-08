@@ -1,0 +1,399 @@
+@layeredapps/dashboard 0.0.17
+http://localhost:9000 (dashboard)
+http://localhost:4000 (application)
+
+Administrator menu:
+@layeredapps/organizations/src/www/administrator/organizations "Organizations module"
+@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions "Stripe Subscriptions <span translate="yes">module</span>"
+/administrator "Dashboard administration"
+
+Account menu:
+@layeredapps/organizations/src/www/account/organizations "Manage organizations"
+@layeredapps/stripe-subscriptions/src/www/account/subscriptions "Subscriptions and billing"
+/account "My account"
+
+Special HTML files:
+@layeredapps/dashboard/template.html
+@layeredapps/dashboard/error.html
+@layeredapps/dashboard/redirect.html
+
+Dashboard modules:
+@layeredapps/organizations (1.0.13)
+@layeredapps/stripe-subscriptions (1.0.3)
+@layeredapps/maxmind-geoip (1.0.12)
+
+Server handlers:
+@layeredapps/dashboard/src/server/forward-api-requests.js
+/src/server/stripe-subscriptions/bind-stripekey.js
+/src/server/stripe-subscriptions/require-payment-confirmation.js
+/src/server/stripe-subscriptions/require-payment.js
+/src/server/stripe-subscriptions/require-subscription.js
+/src/server/maxmind-geoip/bind-country.js
+
+Proxy handlers:
+@layeredapps/dashboard/src/proxy/x-account.js
+@layeredapps/organizations/src/proxy/organizations/x-memberships.js
+@layeredapps/organizations/src/proxy/organizations/x-organizations.js
+@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js
+
+URL -------------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS ------------------------------ HTML --------------------------------
+/                                                                  GUEST  FULLSCREEN                 static-page                           @layeredapps/maxmind-geoip           
+/account                                                                             GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/change-password                                                             GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/change-username                                                             GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/create-profile                                                              GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/create-reset-code                                                           GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/delete-account                                                              GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/delete-account-complete                                   GUEST  FULLSCREEN GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/delete-profile                                                              GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/delete-reset-code                                                           GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/edit-profile                                                                GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/end-all-sessions                                                            GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/end-session                                                                 GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/organizations                                                               GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/accept-invitation                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/create-invitation                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/create-organization                                           GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/delete-invitation                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/delete-membership                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/delete-organization                                           GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/edit-membership-profile                                       GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/edit-organization                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/invitation                                                    GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/membership                                                    GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/memberships                                                   GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/organization                                                  GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/organization-invitations                                      GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/organization-memberships                                      GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/organizations                                                 GET             @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/revoke-membership                                             GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/organizations/transfer-organization                                         GET POST        @layeredapps/organizations            @layeredapps/organizations           
+/account/profile                                                                     GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/profiles                                                                    GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/register                                                  GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/reset-account                                             GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/reset-code                                                                  GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/reset-codes                                                                 GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/restore-account                                           GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/session                                                                     GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/sessions                                                                    GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/set-default-profile                                                         GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/signin                                                    GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/signout                                                   GUEST  FULLSCREEN GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/account/signout-complete                                          GUEST  FULLSCREEN                 static-page                           @layeredapps/dashboard               
+/account/subscriptions                                                               GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/add-payment-method                                            GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/billing-profile                                               GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/billing-profiles                                              GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/cancel-subscription                                           GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/change-plan                                                   GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/confirm-payment                                               GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/confirm-subscription                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/create-billing-profile                                        GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/delete-billing-profile                                        GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/invoice                                                       GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/invoices                                                      GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/pay-invoice                                                   GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/plan                                                          GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/plans                                                         GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/refund                                                        GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/refund-invoice                                                GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/refunds                                                       GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/request-refund                                                GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/restore-subscription                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/start-subscription                                            GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/subscription                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/subscriptions/subscriptions                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/account/verify                                                    GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator                                                                                       static-page                           @layeredapps/dashboard               
+/administrator/account                                                               GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/account-profiles                                                      GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/account-reset-codes                                                   GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/account-sessions                                                      GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/accounts                                                              GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/administrators                                                        GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/assign-administrator                                                  GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/create-reset-code                                                     GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/delete-account                                                        GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/delete-schedule                                                       GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/organizations                                                         GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/invitation                                              GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/invitations                                             GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/membership                                              GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/memberships                                             GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/organization                                            GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/organization-invitations                                GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/organization-memberships                                GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/organizations/organizations                                           GET             @layeredapps/organizations            @layeredapps/organizations           
+/administrator/profile                                                               GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/profiles                                                              GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/reset-code                                                            GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/reset-codes                                                           GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/reset-session-key                                                     GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/revoke-administrator                                                  GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/schedule-account-delete                                               GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/session                                                               GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/sessions                                                              GET             @layeredapps/dashboard                @layeredapps/dashboard               
+/administrator/subscriptions                                                         GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/apply-customer-coupon                                   GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/apply-subscription-coupon                               GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/charge                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/charges                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/coupon                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/coupons                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/create-coupon                                           GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/create-plan                                             GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/create-product                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/customer                                                GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/customers                                               GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/delete-coupon                                           GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/delete-plan                                             GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/delete-product                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/delete-subscription                                     GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/deny-refund                                             GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/edit-coupon                                             GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/edit-plan                                               GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/edit-product                                            GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/flag-charge                                             GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/forgive-invoice                                         GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/invoice                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/invoices                                                GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payment-intent                                          GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payment-intents                                         GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payment-method                                          GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payment-methods                                         GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payout                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/payouts                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/plan                                                    GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/plans                                                   GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/product                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/products                                                GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/publish-coupon                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/publish-plan                                            GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/publish-product                                         GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/refund                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/refund-charge                                           GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/refund-requests                                         GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/refunds                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/revoke-customer-coupon                                  GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/revoke-subscription-coupon                              GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/setup-intent                                            GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/setup-intents                                           GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/subscription                                            GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/subscriptions                                           GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/unpublish-coupon                                        GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/unpublish-plan                                          GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/subscriptions/unpublish-product                                       GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+/administrator/transfer-ownership                                                    GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/api/administrator/account                                                           GET             @layeredapps/dashboard                                                     
+/api/administrator/accounts                                                          GET             @layeredapps/dashboard                                                     
+/api/administrator/accounts-count                                                    GET             @layeredapps/dashboard                                                     
+/api/administrator/administrator-accounts                                            GET             @layeredapps/dashboard                                                     
+/api/administrator/administrator-accounts-count                                      GET             @layeredapps/dashboard                                                     
+/api/administrator/create-reset-code                                                 POST            @layeredapps/dashboard                                                     
+/api/administrator/delete-account                                                    DELETE          @layeredapps/dashboard                                                     
+/api/administrator/deleted-accounts                                                  GET             @layeredapps/dashboard                                                     
+/api/administrator/deleted-accounts-count                                            GET             @layeredapps/dashboard                                                     
+/api/administrator/organizations/invitation                                          GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/invitations                                         GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/invitations-count                                   GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/membership                                          GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/memberships                                         GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/memberships-count                                   GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/organization                                        GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/organizations                                       GET             @layeredapps/organizations                                                 
+/api/administrator/organizations/organizations-count                                 GET             @layeredapps/organizations                                                 
+/api/administrator/profile                                                           GET             @layeredapps/dashboard                                                     
+/api/administrator/profiles                                                          GET             @layeredapps/dashboard                                                     
+/api/administrator/profiles-count                                                    GET             @layeredapps/dashboard                                                     
+/api/administrator/reset-account-administrator                                       PATCH           @layeredapps/dashboard                                                     
+/api/administrator/reset-code                                                        GET             @layeredapps/dashboard                                                     
+/api/administrator/reset-codes                                                       GET             @layeredapps/dashboard                                                     
+/api/administrator/reset-codes-count                                                 GET             @layeredapps/dashboard                                                     
+/api/administrator/reset-session-key                                                 PATCH           @layeredapps/dashboard                                                     
+/api/administrator/session                                                           GET             @layeredapps/dashboard                                                     
+/api/administrator/sessions                                                          GET             @layeredapps/dashboard                                                     
+/api/administrator/sessions-count                                                    GET             @layeredapps/dashboard                                                     
+/api/administrator/set-account-administrator                                         PATCH           @layeredapps/dashboard                                                     
+/api/administrator/set-account-deleted                                               PATCH           @layeredapps/dashboard                                                     
+/api/administrator/set-owner-account                                                 PATCH           @layeredapps/dashboard                                                     
+/api/administrator/subscriptions/charge                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/charges                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/charges-count                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/coupon                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/coupons                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/coupons-count                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-cancelation-refund                           POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-coupon                                       POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-plan                                         POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-product                                      POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-refund                                       POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/create-tax-rate                                     POST            @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/customer                                            GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/customers                                           GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/customers-count                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/delete-coupon                                       DELETE          @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/delete-plan                                         DELETE          @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/delete-product                                      DELETE          @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/delete-subscription                                 DELETE          @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/invoice                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/invoices                                            GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/invoices-count                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-intent                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-intents                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-intents-count                               GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-method                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-methods                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payment-methods-count                               GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payout                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payouts                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/payouts-count                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/plan                                                GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/plans                                               GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/plans-count                                         GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/product                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/products                                            GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/products-count                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/refund                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/refund-requests                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/refund-requests-count                               GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/refunds                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/refunds-count                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/reset-customer-coupon                               PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/reset-subscription-coupon                           PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-charge-flagged                                  PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-coupon-published                                PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-coupon-unpublished                              PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-customer-coupon                                 PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-invoice-uncollectible                           PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-plan-published                                  PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-plan-unpublished                                PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-product-published                               PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-product-unpublished                             PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-refund-request-denied                           PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-subscription-canceled                           PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-subscription-coupon                             PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-tax-rate-active                                 PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/set-tax-rate-inactive                               PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/setup-intent                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/setup-intents                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/setup-intents-count                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/subscription                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/subscriptions                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/subscriptions-count                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/tax-rate                                            GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/tax-rates                                           GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/tax-rates-count                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/update-coupon                                       PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/update-plan                                         PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/update-product                                      PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/update-tax-rate                                     PATCH           @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/usage-record                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/usage-records                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/administrator/subscriptions/usage-records-count                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/user/account                                                                    GET             @layeredapps/dashboard                                                     
+/api/user/create-account                                           GUEST             POST            @layeredapps/dashboard                                                     
+/api/user/create-profile                                                             POST            @layeredapps/dashboard                                                     
+/api/user/create-reset-code                                                          POST            @layeredapps/dashboard                                                     
+/api/user/create-session                                           GUEST             POST            @layeredapps/dashboard                                                     
+/api/user/delete-profile                                                             DELETE          @layeredapps/dashboard                                                     
+/api/user/delete-reset-code                                                          DELETE          @layeredapps/dashboard                                                     
+/api/user/geoip/country                                            GUEST             GET             @layeredapps/maxmind-geoip                                                 
+/api/user/organizations/create-invitation                                            POST            @layeredapps/organizations                                                 
+/api/user/organizations/create-membership                                            POST            @layeredapps/organizations                                                 
+/api/user/organizations/create-organization                                          POST            @layeredapps/organizations                                                 
+/api/user/organizations/delete-invitation                                            DELETE          @layeredapps/organizations                                                 
+/api/user/organizations/delete-membership                                            DELETE          @layeredapps/organizations                                                 
+/api/user/organizations/delete-organization                                          DELETE          @layeredapps/organizations                                                 
+/api/user/organizations/invitation                                                   GET             @layeredapps/organizations                                                 
+/api/user/organizations/invitations                                                  GET             @layeredapps/organizations                                                 
+/api/user/organizations/invitations-count                                            GET             @layeredapps/organizations                                                 
+/api/user/organizations/membership                                                   GET             @layeredapps/organizations                                                 
+/api/user/organizations/memberships                                                  GET             @layeredapps/organizations                                                 
+/api/user/organizations/memberships-count                                            GET             @layeredapps/organizations                                                 
+/api/user/organizations/open-invitation                                              GET             @layeredapps/organizations                                                 
+/api/user/organizations/open-invitation-organization                                 GET             @layeredapps/organizations                                                 
+/api/user/organizations/organization                                                 GET             @layeredapps/organizations                                                 
+/api/user/organizations/organization-membership                                      GET             @layeredapps/organizations                                                 
+/api/user/organizations/organizations                                                GET             @layeredapps/organizations                                                 
+/api/user/organizations/organizations-count                                          GET             @layeredapps/organizations                                                 
+/api/user/organizations/set-organization-owner                                       PATCH           @layeredapps/organizations                                                 
+/api/user/organizations/update-organization                                          PATCH           @layeredapps/organizations                                                 
+/api/user/profile                                                                    GET             @layeredapps/dashboard                                                     
+/api/user/profiles                                                                   GET             @layeredapps/dashboard                                                     
+/api/user/profiles-count                                                             GET             @layeredapps/dashboard                                                     
+/api/user/reset-account-deleted                                    GUEST             PATCH           @layeredapps/dashboard                                                     
+/api/user/reset-account-password                                   GUEST             PATCH           @layeredapps/dashboard                                                     
+/api/user/reset-code                                                                 GET             @layeredapps/dashboard                                                     
+/api/user/reset-codes                                                                GET             @layeredapps/dashboard                                                     
+/api/user/reset-codes-count                                                          GET             @layeredapps/dashboard                                                     
+/api/user/reset-session-key                                                          PATCH           @layeredapps/dashboard                                                     
+/api/user/session                                                                    GET             @layeredapps/dashboard                                                     
+/api/user/sessions                                                                   GET             @layeredapps/dashboard                                                     
+/api/user/sessions-count                                                             GET             @layeredapps/dashboard                                                     
+/api/user/set-account-deleted                                                        PATCH           @layeredapps/dashboard                                                     
+/api/user/set-account-password                                                       PATCH           @layeredapps/dashboard                                                     
+/api/user/set-account-profile                                                        PATCH           @layeredapps/dashboard                                                     
+/api/user/set-account-username                                                       PATCH           @layeredapps/dashboard                                                     
+/api/user/set-session-ended                                                          PATCH           @layeredapps/dashboard                                                     
+/api/user/set-session-verified                                                       PATCH           @layeredapps/dashboard                                                     
+/api/user/subscriptions/charge                                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/charges                                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/charges-count                                                GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-cancelation-refund                                    POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-customer                                              POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-payment-intent                                        POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-payment-method                                        POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-refund                                                POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-refund-request                                        POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-setup-intent                                          POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-subscription                                          POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/create-usage-record                                          POST            @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/customer                                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/customers                                                    GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/customers-count                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/delete-customer                                              DELETE          @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/delete-subscription                                          DELETE          @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/invoice                                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/invoices                                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/invoices-count                                               GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-intent                                               GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-intents                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-intents-count                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-intents-pending-confirmation                         GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-intents-pending-confirmation-count                   GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-method                                               GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-methods                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/payment-methods-count                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-coupon                           GUEST             GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-plan                             GUEST             GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-plans                                              GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-plans-count                                        GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-product                          GUEST             GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-products                                           GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/published-products-count                                     GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/refund                                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/refunds                                                      GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/refunds-count                                                GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/reset-subscription-canceling                                 PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-customer-coupon                                          PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-invoice-paid                                             PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-payment-intent-canceled                                  PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-payment-method-detached                                  PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-setup-intent-canceled                                    PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-subscription-canceled                                    PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-subscription-coupon                                      PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-subscription-plan                                        PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/set-subscription-quantity                                    PATCH           @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/setup-intent                                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/setup-intents                                                GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/setup-intents-count                                          GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/subscription                                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/subscriptions                                                GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/subscriptions-count                                          GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/upcoming-invoice                                             GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/usage-record                                                 GET             @layeredapps/stripe-subscriptions                                          
+/api/user/subscriptions/usage-record-summaries                                       GET             @layeredapps/stripe-subscriptions                                          
+/api/user/update-profile                                                             PATCH           @layeredapps/dashboard                                                     
+/home                                                                                                static-page                           @layeredapps/maxmind-geoip           
+/webhooks/subscriptions/index-subscription-data                    GUEST             POST            @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    

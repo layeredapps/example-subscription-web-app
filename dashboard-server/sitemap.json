@@ -1,0 +1,2352 @@
+{
+  "administrator": [
+    "@layeredapps/organizations/src/www/administrator/organizations \"Organizations module\"",
+    "@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions \"Stripe Subscriptions <span translate=\"yes\">module</span>\"",
+    "/administrator \"Dashboard administration\""
+  ],
+  "account": [
+    "@layeredapps/organizations/src/www/account/organizations \"Manage organizations\"",
+    "@layeredapps/stripe-subscriptions/src/www/account/subscriptions \"Subscriptions and billing\"",
+    "/account \"My account\""
+  ],
+  "modules": [
+    {
+      "name": "@layeredapps/organizations",
+      "version": "1.0.13"
+    },
+    {
+      "name": "@layeredapps/stripe-subscriptions",
+      "version": "1.0.3"
+    },
+    {
+      "name": "@layeredapps/maxmind-geoip",
+      "version": "1.0.12"
+    }
+  ],
+  "content": [],
+  "server": [
+    "@layeredapps/dashboard/src/server/forward-api-requests.js",
+    "/src/server/stripe-subscriptions/bind-stripekey.js",
+    "/src/server/stripe-subscriptions/require-payment-confirmation.js",
+    "/src/server/stripe-subscriptions/require-payment.js",
+    "/src/server/stripe-subscriptions/require-subscription.js",
+    "/src/server/maxmind-geoip/bind-country.js"
+  ],
+  "proxy": [
+    "@layeredapps/dashboard/src/proxy/x-account.js",
+    "@layeredapps/organizations/src/proxy/organizations/x-memberships.js",
+    "@layeredapps/organizations/src/proxy/organizations/x-organizations.js",
+    "@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js"
+  ],
+  "urls": {
+    "/account/change-password": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/change-password.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/change-password.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/change-username": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/change-username.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/change-username.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/create-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/create-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/create-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/create-reset-code": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/create-reset-code.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/create-reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/delete-account-complete": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-account-complete.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-account-complete.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    },
+    "/account/delete-account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-account.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-account.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/delete-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/delete-reset-code": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-reset-code.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/delete-reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/edit-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/edit-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/edit-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/end-all-sessions": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/end-all-sessions.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/end-all-sessions.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/end-session": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/end-session.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/end-session.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/index.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/profile.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/profiles": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/profiles.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/register": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/register.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/register.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET POST",
+      "authDescription": "GUEST"
+    },
+    "/account/reset-account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-account.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-account.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET POST",
+      "authDescription": "GUEST"
+    },
+    "/account/reset-code": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-code.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/reset-codes": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-codes.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/reset-codes.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/restore-account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/restore-account.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/restore-account.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET POST",
+      "authDescription": "GUEST"
+    },
+    "/account/session": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/session.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/session.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/sessions": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/sessions.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/sessions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/set-default-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/set-default-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/set-default-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/signin": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/signin.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/signin.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET POST",
+      "authDescription": "GUEST"
+    },
+    "/account/signout-complete": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/signout-complete.html",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "",
+      "authDescription": "GUEST"
+    },
+    "/account/signout": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/signout.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/signout.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    },
+    "/account/verify": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/verify.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/account/verify.js",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "GET POST",
+      "authDescription": "GUEST"
+    },
+    "/administrator/account-profiles": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-profiles.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/account-reset-codes": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-reset-codes.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-reset-codes.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/account-sessions": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-sessions.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account-sessions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/account.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/accounts": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/accounts.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/accounts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/administrators": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/administrators.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/administrators.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/assign-administrator": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/assign-administrator.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/assign-administrator.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/create-reset-code": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/create-reset-code.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/create-reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/delete-account": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/delete-account.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/delete-account.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/delete-schedule": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/delete-schedule.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/delete-schedule.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/index.html",
+      "templateDescription": "",
+      "verbs": "",
+      "authDescription": ""
+    },
+    "/administrator/profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/profile.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/profiles": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/profiles.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/reset-code": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-code.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/reset-codes": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-codes.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-codes.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/reset-session-key": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-session-key.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/reset-session-key.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/revoke-administrator": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/revoke-administrator.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/revoke-administrator.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/schedule-account-delete": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/schedule-account-delete.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/schedule-account-delete.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/session": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/session.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/session.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/sessions": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/sessions.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/sessions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/transfer-ownership": {
+      "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/transfer-ownership.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/transfer-ownership.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/api/administrator/account": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/account.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/accounts-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/accounts-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/accounts": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/accounts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/administrator-accounts-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/administrator-accounts-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/administrator-accounts": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/administrator-accounts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/create-reset-code": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/create-reset-code.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/delete-account": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/delete-account.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/administrator/deleted-accounts-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/deleted-accounts-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/deleted-accounts": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/deleted-accounts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/profile.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/profiles-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/profiles-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/profiles": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/reset-account-administrator": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/reset-account-administrator.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/reset-code": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/reset-codes-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/reset-codes-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/reset-codes": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/reset-codes.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/reset-session-key": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/reset-session-key.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/session": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/session.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/sessions-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/sessions-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/sessions": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/sessions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/set-account-administrator": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/set-account-administrator.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/set-account-deleted": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/set-account-deleted.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/set-owner-account": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/set-owner-account.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/account": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/account.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/create-account": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/create-account.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": "GUEST"
+    },
+    "/api/user/create-profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/create-profile.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/create-reset-code": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/create-reset-code.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/create-session": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/create-session.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": "GUEST"
+    },
+    "/api/user/delete-profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/delete-profile.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/delete-reset-code": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/delete-reset-code.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/profile.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/profiles-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/profiles-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/profiles": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/reset-account-deleted": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-account-deleted.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": "GUEST"
+    },
+    "/api/user/reset-account-password": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-account-password.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": "GUEST"
+    },
+    "/api/user/reset-code": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-code.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/reset-codes-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-codes-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/reset-codes": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-codes.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/reset-session-key": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/reset-session-key.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/session": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/session.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/sessions-count": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/sessions-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/sessions": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/sessions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/set-account-deleted": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-account-deleted.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/set-account-password": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-account-password.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/set-account-profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-account-profile.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/set-account-username": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-account-username.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/set-session-ended": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-session-ended.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/set-session-verified": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/set-session-verified.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/update-profile": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/user/update-profile.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/home": {
+      "htmlFilePath": "/node_modules/@layeredapps/maxmind-geoip/src/www/home.html",
+      "templateDescription": "",
+      "verbs": "",
+      "authDescription": ""
+    },
+    "/": {
+      "htmlFilePath": "/node_modules/@layeredapps/maxmind-geoip/src/www/index.html",
+      "templateDescription": "FULLSCREEN",
+      "verbs": "",
+      "authDescription": "GUEST"
+    },
+    "/account/organizations/accept-invitation": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/accept-invitation.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/accept-invitation.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/create-invitation": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/create-invitation.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/create-invitation.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/create-organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/create-organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/create-organization.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/delete-invitation": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-invitation.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-invitation.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/delete-membership": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-membership.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-membership.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/delete-organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/delete-organization.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/edit-membership-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/edit-membership-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/edit-membership-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/edit-organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/edit-organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/edit-organization.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/index.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/invitation": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/invitation.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/membership": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/membership.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/membership.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/memberships": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/memberships.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/organization-invitations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization-invitations.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization-invitations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/organization-memberships": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization-memberships.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization-memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organization.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/organizations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organizations.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/organizations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/organizations/revoke-membership": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/revoke-membership.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/revoke-membership.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/organizations/transfer-organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/transfer-organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/account/organizations/transfer-organization.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/organizations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/index.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/invitation": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/invitation.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/invitations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/invitations.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/invitations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/membership": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/membership.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/membership.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/memberships": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/memberships.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/organization-invitations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization-invitations.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization-invitations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/organization-memberships": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization-memberships.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization-memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/organization": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organization.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/organizations/organizations": {
+      "htmlFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organizations.html",
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/administrator/organizations/organizations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/invitations-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/invitations-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/invitations": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/invitations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/membership": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/membership.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/memberships-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/memberships-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/memberships": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/organization.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/organizations-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/organizations-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/organizations/organizations": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/administrator/organizations/organizations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/create-invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/create-invitation.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/organizations/create-membership": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/create-membership.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/organizations/create-organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/create-organization.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/organizations/delete-invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/delete-invitation.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/organizations/delete-membership": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/delete-membership.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/organizations/delete-organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/delete-organization.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/organizations/invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/invitations-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitations-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/invitations": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/membership": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/membership.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/memberships-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/memberships-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/memberships": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/open-invitation-organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/open-invitation-organization.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/open-invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/open-invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/organization-membership": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/organization-membership.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/organization.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/organizations-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/organizations-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/organizations": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/organizations.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/set-organization-owner": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/set-organization-owner.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/organizations/update-organization": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/update-organization.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/account/subscriptions/add-payment-method": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/add-payment-method.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/add-payment-method.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/billing-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/billing-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/billing-profile.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/billing-profiles": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/billing-profiles.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/billing-profiles.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/cancel-subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/cancel-subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/cancel-subscription.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/change-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/change-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/change-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/confirm-payment": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/confirm-payment.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/confirm-payment.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/confirm-subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/confirm-subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/confirm-subscription.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/create-billing-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/create-billing-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/create-billing-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/delete-billing-profile": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/delete-billing-profile.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/delete-billing-profile.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/index.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/invoice": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/invoice.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/invoice.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/invoices": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/invoices.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/invoices.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/pay-invoice": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/pay-invoice.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/pay-invoice.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/plan.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/plans": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/plans.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/plans.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/refund-invoice": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refund-invoice.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refund-invoice.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/refund": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refund.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refund.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/refunds": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refunds.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/refunds.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/request-refund": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/request-refund.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/request-refund.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/restore-subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/restore-subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/restore-subscription.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/start-subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/start-subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/start-subscription.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/account/subscriptions/subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/subscription.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/account/subscriptions/subscriptions": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/subscriptions.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/account/subscriptions/subscriptions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/apply-customer-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/apply-customer-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/apply-customer-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/apply-subscription-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/apply-subscription-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/apply-subscription-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/charge": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/charge.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/charge.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/charges": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/charges.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/charges.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/coupon.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/coupons": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/coupons.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/coupons.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/create-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/create-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/create-product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/create-product.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/customer": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/customer.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/customer.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/customers": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/customers.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/customers.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/delete-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/delete-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/delete-product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-product.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/delete-subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/delete-subscription.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/deny-refund": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/deny-refund.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/deny-refund.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/edit-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/edit-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/edit-product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/edit-product.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/flag-charge": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/flag-charge.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/flag-charge.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/forgive-invoice": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/forgive-invoice.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/forgive-invoice.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/index.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/invoice": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/invoice.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/invoice.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/invoices": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/invoices.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/invoices.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payment-intent": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-intent.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payment-intents": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-intents.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payment-method": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-method.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-method.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payment-methods": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-methods.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payment-methods.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payout": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payout.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payout.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/payouts": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payouts.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/payouts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/plan.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/plans": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/plans.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/plans.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/product.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/products": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/products.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/products.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/publish-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/publish-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/publish-product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/publish-product.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/refund-charge": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund-charge.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund-charge.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/refund-requests": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund-requests.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund-requests.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/refund": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refund.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/refunds": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refunds.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/refunds.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/revoke-customer-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/revoke-customer-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/revoke-customer-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/revoke-subscription-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/revoke-subscription-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/revoke-subscription-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/setup-intent": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/setup-intent.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/setup-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/setup-intents": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/setup-intents.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/setup-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/subscription": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/subscription.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/subscription.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/subscriptions": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/subscriptions.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/subscriptions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/unpublish-coupon": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-coupon.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/unpublish-plan": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-plan.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-plan.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/administrator/subscriptions/unpublish-product": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-product.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/administrator/subscriptions/unpublish-product.js",
+      "templateDescription": "",
+      "verbs": "GET POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/charge": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/charge.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/charges-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/charges-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/charges": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/charges.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/coupon.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/coupons-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/coupons-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/coupons": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/coupons.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-cancelation-refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-cancelation-refund.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-coupon.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-plan.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-product": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-product.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-refund.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/create-tax-rate": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/create-tax-rate.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/customer": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/customer.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/customers-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/customers-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/customers": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/customers.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/delete-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/delete-coupon.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/delete-plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/delete-plan.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/delete-product": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/delete-product.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/delete-subscription": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/delete-subscription.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/invoice": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/invoice.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/invoices-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/invoices-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/invoices": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/invoices.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-intents-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-intents-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-intents": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-method": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-method.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-methods-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-methods-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payment-methods": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payment-methods.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payout": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payout.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payouts-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payouts-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/payouts": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/payouts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/plan.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/plans-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/plans-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/plans": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/plans.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/product": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/product.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/products-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/products-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/products": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/products.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/refund-requests-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/refund-requests-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/refund-requests": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/refund-requests.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/refund.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/refunds-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/refunds-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/refunds": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/refunds.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/reset-customer-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/reset-customer-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/reset-subscription-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/reset-subscription-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-charge-flagged": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-charge-flagged.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-coupon-published": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-coupon-published.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-coupon-unpublished": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-coupon-unpublished.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-customer-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-customer-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-invoice-uncollectible": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-invoice-uncollectible.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-plan-published": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-plan-published.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-plan-unpublished": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-plan-unpublished.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-product-published": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-product-published.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-product-unpublished": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-product-unpublished.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-refund-request-denied": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-refund-request-denied.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-subscription-canceled": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-subscription-canceled.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-subscription-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-subscription-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-tax-rate-active": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-tax-rate-active.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/set-tax-rate-inactive": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/set-tax-rate-inactive.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/setup-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/setup-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/setup-intents-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/setup-intents-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/setup-intents": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/setup-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/subscription": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/subscription.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/subscriptions-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/subscriptions-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/subscriptions": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/subscriptions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/tax-rate": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/tax-rate.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/tax-rates-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/tax-rates-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/tax-rates": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/tax-rates.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/update-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/update-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/update-plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/update-plan.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/update-product": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/update-product.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/update-tax-rate": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/update-tax-rate.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/usage-record": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/usage-record.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/usage-records-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/usage-records-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/subscriptions/usage-records": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/administrator/subscriptions/usage-records.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/charge": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/charge.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/charges-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/charges-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/charges": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/charges.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-cancelation-refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-cancelation-refund.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-customer": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-customer.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-payment-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-payment-intent.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-payment-method": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-payment-method.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-refund-request": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-refund-request.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-refund.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-setup-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-setup-intent.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-subscription": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-subscription.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/create-usage-record": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/create-usage-record.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/customer": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/customer.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/customers-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/customers-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/customers": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/customers.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/delete-customer": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/delete-customer.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/delete-subscription": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/delete-subscription.js",
+      "templateDescription": "",
+      "verbs": "DELETE",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/invoice": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/invoice.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/invoices-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/invoices-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/invoices": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/invoices.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-intents-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-intents-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-intents-pending-confirmation-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-intents-pending-confirmation-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-intents-pending-confirmation": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-intents-pending-confirmation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-intents": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-method": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-method.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-methods-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-methods-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/payment-methods": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/payment-methods.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/published-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-coupon.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    },
+    "/api/user/subscriptions/published-plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-plan.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    },
+    "/api/user/subscriptions/published-plans-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-plans-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/published-plans": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-plans.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/published-product": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-product.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    },
+    "/api/user/subscriptions/published-products-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-products-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/published-products": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/published-products.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/refund": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/refund.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/refunds-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/refunds-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/refunds": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/refunds.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/reset-subscription-canceling": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/reset-subscription-canceling.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-customer-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-customer-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-invoice-paid": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-invoice-paid.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-payment-intent-canceled": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-payment-intent-canceled.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-payment-method-detached": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-payment-method-detached.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-setup-intent-canceled": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-setup-intent-canceled.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-subscription-canceled": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-subscription-canceled.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-subscription-coupon": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-subscription-coupon.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-subscription-plan": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-subscription-plan.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/set-subscription-quantity": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/set-subscription-quantity.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/setup-intent": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/setup-intent.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/setup-intents-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/setup-intents-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/setup-intents": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/setup-intents.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/subscription": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/subscription.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/subscriptions-count": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/subscriptions-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/subscriptions": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/subscriptions.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/upcoming-invoice": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/upcoming-invoice.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/usage-record-summaries": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/usage-record-summaries.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/subscriptions/usage-record": {
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/api/user/subscriptions/usage-record.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/webhooks/subscriptions/index-subscription-data": {
+      "htmlFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/webhooks/subscriptions/index-subscription-data.html",
+      "jsFilePath": "/node_modules/@layeredapps/stripe-subscriptions/src/www/webhooks/subscriptions/index-subscription-data.js",
+      "templateDescription": "",
+      "verbs": "POST",
+      "authDescription": "GUEST"
+    },
+    "/api/user/geoip/country": {
+      "jsFilePath": "/node_modules/@layeredapps/maxmind-geoip/src/www/api/user/geoip/country.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": "GUEST"
+    }
+  },
+  "templateHTMLPath": "@layeredapps/dashboard/template.html",
+  "errorHTMLPath": "@layeredapps/dashboard/error.html",
+  "redirectHTMLPath": "@layeredapps/dashboard/redirect.html"
+}
