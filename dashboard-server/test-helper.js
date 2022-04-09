@@ -8,5 +8,18 @@ global.testConfiguration.applicationServerToken = 'token'
 module.exports = require('@layeredapps/stripe-subscriptions/test-helper.js')
 
 const applicationServer = require('../application-server/main.js')
-applicationServer.start(process.env.APPLICATION_SERVER_PORT, global.dashboardServer)
-after(applicationServer.stop)
+
+
+before(async () => {
+  delete (global.sitemap['/'])
+  delete (global.sitemap['/home'])
+  await applicationServer.start(process.env.APPLICATION_SERVER_PORT)
+})
+
+beforeEach(async () => {
+  await applicationServer.flush()
+})
+
+after(async () => {
+  await applicationServer.stop()
+})

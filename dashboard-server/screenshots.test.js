@@ -6,7 +6,7 @@ const TestHelper = require('./test-helper.js')
 const TestHelperOrganizations = require('@layeredapps/organizations/test-helper.js')
 const TestStripeAccounts = require('@layeredapps/stripe-subscriptions/test-stripe-accounts.js')
 
-describe('example-subscription-web-app', () => {
+describe('example-subscription-web-app screenshots', () => {
   it('administrator creates product and plan (screenshots)', async () => {
     const owner = await TestHelper.createOwner()
     const req = TestHelper.createRequest('/home')
@@ -37,7 +37,8 @@ describe('example-subscription-web-app', () => {
           interval: 'month',
           interval_count: '1',
           currency: 'usd',
-          productid: 'product'
+          productid: 'product',
+          usage_type: 'licensed'
         }
       },
       { click: '/administrator/subscriptions/publish-plan' },
@@ -65,14 +66,11 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             try {
-              await TestHelper.waitNavigation()
+              const submitForm = await page.$('#submit-form')
+              if (submitForm) {
+                return
+              }
             } catch (error) {
-              await TestHelper.wait(100)
-              continue
-            }
-            const submitForm = await page.$('#submit-form')
-            if (submitForm) {
-              return
             }
             await TestHelper.wait(100)
           }
@@ -101,14 +99,11 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             try {
-              await TestHelper.waitNavigation()
+              const submitForm = await page.$('#submit-form')
+              if (submitForm) {
+                return
+              }
             } catch (error) {
-              await TestHelper.wait(100)
-              continue
-            }
-            const submitForm = await page.$('#submit-form')
-            if (submitForm) {
-              return
             }
             await TestHelper.wait(100)
           }
@@ -126,7 +121,15 @@ describe('example-subscription-web-app', () => {
                 const cardContainer = document.getElementById('card-container')
                 return cardContainer && cardContainer.children.length
               })
-              if (cardContainerChildren) {
+              const cvcContainerChildren = await page.evaluate(async () => {
+                const cvcContainer = document.getElementById('cvc-container')
+                return cvcContainer && cvcContainer.children.length
+              })
+              const expiryContainerChildren = await page.evaluate(async () => {
+                const expiryContainer = document.getElementById('expiry-container')
+                return expiryContainer && expiryContainer.children.length
+              })
+              if (cardContainerChildren && cvcContainerChildren && expiryContainerChildren) {
                 return
               }
             } catch (error) {
@@ -159,14 +162,11 @@ describe('example-subscription-web-app', () => {
         waitAfter: async (page) => {
           while (true) {
             try {
-              await TestHelper.waitNavigation()
+              const submitForm = await page.$('#submit-form')
+              if (submitForm) {
+                return
+              }
             } catch (error) {
-              await TestHelper.wait(100)
-              continue
-            }
-            const submitForm = await page.$('#submit-form')
-            if (submitForm) {
-              return
             }
             await TestHelper.wait(100)
           }
@@ -182,16 +182,16 @@ describe('example-subscription-web-app', () => {
         fill: '#form-stripejs-v3',
         body: {
           email: userIdentity.email,
-          description: 'description',
+          description: 'Chase',
           name: `${userIdentity.firstName} ${userIdentity.lastName}`,
-          'cvc-container': '111',
-          'card-container': '4111111111111111',
-          'expiry-container': '12' + ((new Date().getFullYear() + 1).toString()).substring(2),
+          'cvc-container': { type: true, value: '111' },
+          'card-container': { type: true, value: '4111111111111111' },
+          'expiry-container': { type: true, value: '12' + ((new Date().getFullYear() + 1).toString()).substring(2) },
           address_line1: '285 Fulton St',
           address_line2: 'Apt 893',
           address_city: 'New York',
-          address_state: 'NY',
-          'zip-container': '10007',
+          address_state: 'New York',
+          'zip-container': { type: true, value: '10007' },
           address_country: 'US'
         },
         waitBefore: async (page) => {
@@ -201,7 +201,15 @@ describe('example-subscription-web-app', () => {
                 const cardContainer = document.getElementById('card-container')
                 return cardContainer && cardContainer.children.length
               })
-              if (cardContainerChildren) {
+              const cvcContainerChildren = await page.evaluate(async () => {
+                const cvcContainer = document.getElementById('cvc-container')
+                return cvcContainer && cvcContainer.children.length
+              })
+              const expiryContainerChildren = await page.evaluate(async () => {
+                const expiryContainer = document.getElementById('expiry-container')
+                return expiryContainer && expiryContainer.children.length
+              })
+              if (cardContainerChildren && cvcContainerChildren && expiryContainerChildren) {
                 return
               }
             } catch (error) {
@@ -213,7 +221,7 @@ describe('example-subscription-web-app', () => {
       {
         fill: '#submit-form',
         body: {
-          customerid: 'cus_'
+          customerid: 'Chase'
         },
         waitBefore: async (page) => {
           while (true) {
@@ -232,12 +240,15 @@ describe('example-subscription-web-app', () => {
         },
         waitAfter: async (page) => {
           while (true) {
-            const postCreator = await page.evaluate(() => {
-              const postCreator = document.getElementById('post-creator')
-              return postCreator && postCreator.style.display ? postCreator.style.display : 'none'
-            })
-            if (postCreator === 'block') {
-              return
+            try {
+              const postCreator = await page.evaluate(() => {
+                const postCreator = document.getElementById('post-creator')
+                return postCreator && postCreator.style.display ? postCreator.style.display : 'none'
+              })
+              if (postCreator === 'block') {
+                return
+              }
+            } catch (error) {
             }
             await TestHelper.wait(100)
           }
@@ -250,9 +261,7 @@ describe('example-subscription-web-app', () => {
 
   it('user 1 cancels subscription', async () => {
     const administrator = await TestStripeAccounts.createOwnerWithPlan({ amount: 1000 })
-    const user = await TestStripeAccounts.createUserWithPaymentMethod()
-    await TestHelper.setupWebhook()
-    await TestHelper.createSubscription(user, administrator.plan.id)
+    const user = await TestStripeAccounts.createUserWithPaidSubscription(administrator.plan)
     global.requireSubscription = true
     const req = TestHelper.createRequest('/home')
     req.account = user.account
@@ -379,9 +388,7 @@ describe('example-subscription-web-app', () => {
 
   it('user 1 views shared post', async () => {
     const owner = await TestStripeAccounts.createOwnerWithPlan()
-    const user = await TestStripeAccounts.createUserWithPaymentMethod()
-    await TestHelper.setupWebhook()
-    await TestHelper.createSubscription(user, owner.plan.id)
+    const user = await TestStripeAccounts.createUserWithPaidSubscription(owner.plan)
     global.userProfileFields = ['display-name', 'display-email']
     global.membershipProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user, {
@@ -428,8 +435,7 @@ describe('example-subscription-web-app', () => {
       }
     }
     await req.post()
-    const user2 = await TestStripeAccounts.createUserWithPaymentMethod()
-    await TestHelper.createSubscription(user2, owner.plan.id)
+    const user2 = await TestStripeAccounts.createUserWithPaidSubscription(owner.plan)
     global.userProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user2, {
       'display-name': user2.profile.firstName,
