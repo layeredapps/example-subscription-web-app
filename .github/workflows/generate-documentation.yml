@@ -23,8 +23,8 @@ jobs:
         standard
     - name: Configure git
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
     - name: Set up project
       run: |
         cd application-server
@@ -37,14 +37,14 @@ jobs:
       run: |
         export SCREENSHOT_PATH=`pwd`/documentation/screenshots/example-subscription-web-app
         cd dashboard-server
-        node --expose-gc --max-old-space-size=2048 ./node_modules/.bin/mocha --file test-helper.js --timeout 480000 --ignore 'node_modules/hpagent/**/*' --slow 480000 --recursive --extension .test.js . 2>&1 | tee tests.txt
+        node --expose-gc --max-old-space-size=2048 ./node_modules/.bin/mocha --retries 2 --file test-helper.js --timeout 480000 --ignore 'node_modules/hpagent/**/*' --slow 480000 --recursive --extension .test.js . 2>&1 | tee tests.txt
       env:
         NODE_ENV: testing
         FAST_START: true
         DASHBOARD_SERVER: "http://localhost:9000"
         PORT: 9000
         GENERATE_SITEMAP_TXT: true
-        GENERATE_API_TXT: true   
+        GENERATE_API_TXT: true
         GENERATE_SCREENSHOTS: true
         SCREENSHOT_LANGUAGES: "en"
         APPLICATION_SERVER: "http://localhost:9213"

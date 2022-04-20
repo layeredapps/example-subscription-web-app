@@ -57,7 +57,7 @@ textarea { border-color: transparent; outline: 0; background-color: rgba(0, 0, 0
   .mast h2 { font-size: 2.4rem; line-height: 3.2rem }
   .post-information h2 { font-size: 0.8rem; font-weight: normal }
   a.pure-button { font-size: 1.2rem !important; margin: 0 2rem 0 0 !important }
-  menu button { font-size: 0.7rem !important; padding: 0 !important; margin: 0 0 0 1rem !important }
+  menu button { font-size: 0.7rem !important; padding: 0 0.5rem !important; margin: 0 0 0 1rem !important }
 }
 /* mobile tweaks */
 @media (max-width: 640px) {
