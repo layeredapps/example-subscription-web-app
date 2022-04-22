@@ -7,7 +7,7 @@ const TestHelperOrganizations = require('@layeredapps/organizations/test-helper.
 const TestStripeAccounts = require('@layeredapps/stripe-subscriptions/test-stripe-accounts.js')
 
 describe('example-subscription-web-app screenshots', () => {
-  it('administrator creates product and plan (screenshots)', async () => {
+  it('administrator creates product and plan', async () => {
     const owner = await TestHelper.createOwner()
     const req = TestHelper.createRequest('/home')
     req.account = owner.account
@@ -225,14 +225,18 @@ describe('example-subscription-web-app screenshots', () => {
           while (true) {
             try {
               const customeridChecked = await page.evaluate(async () => {
-                const inputs = document.querySelector('#customerid').getElementsByTagName('input')
+                const inputs = document.querySelectorAll('input')
                 for (const input of inputs) {
-                  input.checked = true
-                  return true
+                  if (input.type === 'radio' && input.name === 'customerid') {
+                    input.parentNode.click()
+                    if (input.checked) {
+                      return true
+                    }
+                  }
                 }
               })
               if (customeridChecked) {
-                return
+                return true
               }
             } catch (error) {
             }
