@@ -1,27 +1,21 @@
-body,
-.template,
-.template .navigation,
-.template #spillage-menu-container,
-.template .header { background-color: #002B36; color: rgba(255, 255, 255, 0.75) }
-.template #spillage-menu-container:hover,
-.template #spillage-menu-container:active,
-.template #spillage-menu-container:focus,
-.template #spillage-menu-container:hover menu,
-.template #spillage-menu-container:active menu,
-.template #spillage-menu-container:focus menu { background-color: rgba(0, 0, 0, 0.75); border-color: #000 }
-.template #spillage-menu-container menu { border-top-left-radius: 0.5rem }
-.template .navigation { border-bottom: none; background-color: transparent }
-.template .navigation a,
-.template .navigation span { color: rgba(255, 255, 255, 0.75) !important; padding: 0 0.75rem !important; margin: 0 0.25rem !important }
-.template .navigation a:hover { color: #FFF !important; background-color: #000 !important; border-radius: 0.5rem !important; text-decoration: none !important }
-.template #spillage-menu-container a { padding: 0 0.5rem !important; margin: 0 !important; line-height: 2rem !important }
-.template #spillage-menu-container a span { margin: 0 !important; padding: 0 !important }
-.template .menu-group:hover .dropdown-menu,
-.template .menu-group:hover .menu-trigger,
-.template .menu-group:focus .dropdown-menu,
-.template .menu-group:focus .menu-trigger,
-.template .menu-group:active .dropdown-menu,
-.template .menu-group:active .menu-trigger { background-color: #2c4b4b }
-.template .dropdown-menu a { color: rgba(255, 255, 255, 0.75) !important }
-.template .dropdown-menu a:hover { color: rgba(0, 0, 0, 0.75) !important }
 .home .template .navigation { display: none }
+
+:root {
+  --template-background-color: #002B36;
+  --template-text-color: rgba(255, 255, 255, 0.75);
+  --template-focus-color: #2c4b4b;
+  --template-darkest-color: rgba(0, 0, 0, 0.75);
+  --template-highlight-focus-color: rgba(255, 255, 255, 0.5);
+  --template-shadow-color: rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --template-background-color: #00141A;
+    --template-text-color: rgba(247, 241, 237, 0.75);
+    --template-focus-color: #011f27;
+    --template-darkest-color: #2F365F;
+    --template-highlight-focus-color: rgba(255, 255, 255, 0.25);
+    --template-shadow-color: #000;
+  }
+}

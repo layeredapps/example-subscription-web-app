@@ -1,52 +1,22 @@
-.navigation,
-body,
-body.entry { background-color: #002B36; color: rgba(255, 255, 255, 0.75) }
-.entry .container a { color: rgba(255, 255, 255, 0.5) }
-.entry .container a:hover { color: #FFF }
-th { background-color: rgba(255, 255, 255, 0.5); border: rgba(255, 255, 255, 0.5); color: rgba(0, 0, 0, 0.75) }
-td a { color: #FFF }
-h1, 
-h2,
-h3,
-p,
-td,
-a { color: rgba(255, 255, 255, 0.75) }
-.container .entry a:hover { color: #FFF }
-.container label { color: rgba(255, 255, 255, 0.75) }
-.container .list-table th,
-.container .data-table th { background-color: rgba(255, 255, 255, 0.5); color: #002B36 }
-.container .data-table th,
-.container .data-table td,
-.container .list-table th,
-.container .list-table td  { border-color: rgba(255, 255, 255, 0.5) }
-.container .list-table tr:nth-child(2n-1) td { background-color: rgba(0, 0, 0, 0.25) }
-.container .data-table,
-.container .list-table a { color: #FFF }
-.container .button { border-color: transparent; background-image: none; background-color: rgba(0, 0, 0, 0.5); color: rgba(255, 255, 255, 0.5) }
-.container .button:hover { border-color: rgba(255, 255, 255, 0.25); background-color: rgba(0, 0, 0, 0.25); color: rgba(255, 255, 255, 0.75) }
-.container .button:focus { background-color: rgba(0, 0, 0, 0.75); border-color: rgba(255, 255, 255, 0.5) }
+:root {
+  --content-background-color: #002B36;
+  --content-text-color: rgba(255, 255, 255, 0.5);
+  --content-th-background-color: rgba(255, 255, 255, 0.25);
+  --button-primary-background-color: rgba(255, 255, 255, 0.25);
+  --content-darkest-color: rgba(255, 255, 255, 0.5);
+  --button-primary-text-color: rgba(255, 255, 255, 0.75);
+  --button-primary-focus-background-color: rgba(255, 255, 255, 0.5);
+  --content-focus-color: #FFF;
+}
 
-.container .small-button { font-size: 0.8rem; padding: 0.25rem 0.5rem; background-color: rgba(0, 0, 0, 0.5); border-radius: 0.25rem; border-color: transparent }
-.container .small-button:hover { background-color: #2F365F; border-color: transparent }
-.container .small-button:disabled { background-color: #666; border-color: transparent }
-.container .small-button:focus { background-color: #2F365F; border-color: transparent }
-
-.container .success { color: #FFF }
-.container select { background-color: #FFF }
-.container select option  { color: #000; background-color: #FFF }
-.container label:focus, .container input:focus { box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5) }
-.container .field select, .field input[type="number"], .field input[type="text"], .field input[type="password"] { background-color: rgba(0, 0, 0, 0.25); color: rgba( 255, 255, 255, 0.75) }
-.field input[type=number]:active,
-.field input[type=number]:focus,
-.field input[type=text]:active,
-.field input[type=text]:focus,
-.field input[type=password]:active,
-.field input[type=password]:focus { background-color: rgba(0, 0, 0, 0.5) }
-.container .message { background-color: transparent; padding: 0.5rem; display: inline-block }
-.chart { background-color: rgba(255, 255, 255, 0.125) }
-.chart .metrics li { color: #FFF }
-.chart .metrics li span { color: rgba(255, 255, 255, 0.5) } 
-.chart legend span { color: rgba(255, 255, 255, 0.5) }
-.chart .values h3 { color: #FFF }
-.chart ol li span { background-color: rgba(255, 255, 255, 0.5) }
-.chart ol li span:hover { background-color: rgba(255, 255, 255, 0.75) }
+@media (prefers-color-scheme: dark) {
+  :root {
+     --content-background-color: #00141A;
+     --content-th-background-color: rgba(255, 255, 255, 0.125);
+     --button-primary-background-color: rgba(255, 255, 255, 0.25);
+     --content-darkest-color: rgba(255, 255, 255, 0.5);
+     --button-primary-text-color: rgba(255, 255, 255, 0.75);
+     --button-primary-focus-background-color: rgba(255, 255, 255, 0.5);
+     --content-focus-color: #FFF;
+  }
+}
