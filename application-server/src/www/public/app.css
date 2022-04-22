@@ -163,6 +163,16 @@ textarea { border-color: transparent; outline: 0; background-color: var(--textar
 
 /* color settings */
 :root {
+  --entry-form-success-color: #F7F1ED;
+  --entry-form-error-color: #7d9fc1;
+  --entry-form-background-color: #002B36;
+  --entry-form-text-color: #F7F1ED;
+  --entry-form-button-background-color: #000;
+  --entry-form-button-text-color: #F7F1ED;
+  --entry-form-button-focus-background-color: #000;
+  --entry-form-button-focus-text-color:  #F7F1ED;
+  --entry-form-button-disabled-background-color: #666;
+  --entry-form-button-disabled-text-color: #000;
   --body-background-color: #002B36;
   --body-text-color: rgba(255, 255, 255, 0.75);
   --menu-button-hover-background-color: #000;
@@ -193,9 +203,7 @@ textarea { border-color: transparent; outline: 0; background-color: var(--textar
 
 @media (prefers-color-scheme: dark) {
   :root {
-
     --body-background-color: #00141A;
-
     --body-text-color: rgba(255, 255, 255, 0.5);
     --menu-button-hover-background-color: #000;
     --menu-button-hover-text-color: #FFF;
