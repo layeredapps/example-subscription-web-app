@@ -1,4 +1,4 @@
-@layeredapps/dashboard 0.0.17
+@layeredapps/dashboard 0.0.55
 http://localhost:9000 (dashboard)
 http://localhost:4000 (application)
 
@@ -18,9 +18,9 @@ Special HTML files:
 @layeredapps/dashboard/redirect.html
 
 Dashboard modules:
-@layeredapps/organizations (1.0.13)
-@layeredapps/stripe-subscriptions (1.0.3)
-@layeredapps/maxmind-geoip (1.0.12)
+@layeredapps/organizations (1.0.22)
+@layeredapps/stripe-subscriptions (1.0.18)
+@layeredapps/maxmind-geoip (1.0.16)
 
 Server handlers:
 @layeredapps/dashboard/src/server/forward-api-requests.js
@@ -105,7 +105,7 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /account/subscriptions/subscription                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 /account/subscriptions/subscriptions                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 /account/verify                                                    GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
-/administrator                                                                                       static-page                           @layeredapps/dashboard               
+/administrator                                                                       GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator/account                                                               GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator/account-profiles                                                      GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator/account-reset-codes                                                   GET             @layeredapps/dashboard                @layeredapps/dashboard               
@@ -194,6 +194,7 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /api/administrator/delete-account                                                    DELETE          @layeredapps/dashboard                                                     
 /api/administrator/deleted-accounts                                                  GET             @layeredapps/dashboard                                                     
 /api/administrator/deleted-accounts-count                                            GET             @layeredapps/dashboard                                                     
+/api/administrator/metric-keys                                                       GET             @layeredapps/dashboard                                                     
 /api/administrator/organizations/invitation                                          GET             @layeredapps/organizations                                                 
 /api/administrator/organizations/invitations                                         GET             @layeredapps/organizations                                                 
 /api/administrator/organizations/invitations-count                                   GET             @layeredapps/organizations                                                 
@@ -306,6 +307,8 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /api/user/organizations/delete-membership                                            DELETE          @layeredapps/organizations                                                 
 /api/user/organizations/delete-organization                                          DELETE          @layeredapps/organizations                                                 
 /api/user/organizations/invitation                                                   GET             @layeredapps/organizations                                                 
+/api/user/organizations/invitation-memberships                                       GET             @layeredapps/organizations                                                 
+/api/user/organizations/invitation-memberships-count                                 GET             @layeredapps/organizations                                                 
 /api/user/organizations/invitations                                                  GET             @layeredapps/organizations                                                 
 /api/user/organizations/invitations-count                                            GET             @layeredapps/organizations                                                 
 /api/user/organizations/membership                                                   GET             @layeredapps/organizations                                                 
@@ -317,6 +320,8 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /api/user/organizations/organization-membership                                      GET             @layeredapps/organizations                                                 
 /api/user/organizations/organizations                                                GET             @layeredapps/organizations                                                 
 /api/user/organizations/organizations-count                                          GET             @layeredapps/organizations                                                 
+/api/user/organizations/secret-invitation                                            GET             @layeredapps/organizations                                                 
+/api/user/organizations/set-invitation-terminated                                    PATCH           @layeredapps/organizations                                                 
 /api/user/organizations/set-organization-owner                                       PATCH           @layeredapps/organizations                                                 
 /api/user/organizations/update-organization                                          PATCH           @layeredapps/organizations                                                 
 /api/user/profile                                                                    GET             @layeredapps/dashboard                                                     
@@ -397,3 +402,5 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /api/user/update-profile                                                             PATCH           @layeredapps/dashboard                                                     
 /home                                                                                                static-page                           @layeredapps/maxmind-geoip           
 /webhooks/subscriptions/index-subscription-data                    GUEST             POST            @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
+
+2022-04-23T10:19:03.174Z

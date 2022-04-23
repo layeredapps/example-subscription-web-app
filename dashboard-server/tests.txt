@@ -42,12 +42,10 @@
       Strength to protect passwords
         ✔ default 10
         ✔ Integer
-    ENCRYPTION_SECRET
-      32-character secret string
-        ✔ String
-    ENCRYPTION_SECRET_IV
-      16-character secret string
-        ✔ String
+    DISABLE_METRICS
+      Disable aggregated metrics
+        ✔ default unset
+        ✔ Boolean
     DISABLE_REGISTRATION
       Disable UI (not API) for registering
         ✔ default unset
@@ -316,7 +314,8 @@
     submit
       ✔ should create reset code (screenshots)
     errors
-      ✔ invalid-secret-code
+      ✔ invalid-secret-code (missing)
+      ✔ invalid-secret-code is not alphanumeric
       ✔ invalid-secret-code-length
 
   /account/delete-account-complete
@@ -465,6 +464,7 @@
       ✔ should create account (screenshots)
     errors
       ✔ invalid-username
+      ✔ duplicate-username
       ✔ invalid-username-length
       ✔ invalid-password
       ✔ invalid-password-length
@@ -650,7 +650,8 @@
     submit
       ✔ should create reset code (screenshots)
     errors
-      ✔ invalid-secret-code
+      ✔ invalid-secret-code (missing)
+      ✔ invalid-secret-code is not alphanumeric
       ✔ invalid-secret-code-length
 
   /administrator/delete-account
@@ -809,6 +810,7 @@
         ✔ invalid querystring accountid
       invalid-secret-code
         ✔ missing posted secret-code
+        ✔ invalid posted secret-code is not alphanumeric
       invalid-secret-code-length
         ✔ invalid posted secret-code length
     returns
@@ -1004,6 +1006,8 @@
     exceptions
       invalid-username
         ✔ missing posted username
+      duplicate-username
+        ✔ username already registered
       invalid-username-length
         ✔ posted username too short
         ✔ posted username too long
@@ -1144,6 +1148,7 @@
         ✔ ineligible accessing account
       invalid-secret-code
         ✔ missing posted secret-code
+        ✔ invalid posted secret-code is not alphanumeric
       invalid-secret-code-length
         ✔ posted secret code too short
         ✔ posted secret code too long
@@ -1507,6 +1512,14 @@
       Longest organization name length
         ✔ default 50
         ✔ Integer
+    MINIMUM_ORGANIZATION_PIN_LENGTH
+      Shortest organization PIN length
+        ✔ default 4
+        ✔ Integer
+    MAXIMUM_ORGANIZATION_PIN_LENGTH
+      Longest organization PIN length
+        ✔ default 6
+        ✔ Integer
     MINIMUM_INVITATION_CODE_LENGTH
       Shortest invitation code length
         ✔ default 6
@@ -1547,6 +1560,8 @@
       ✔ should accept valid existing profile
       ✔ should create organization (screenshots)
     errors
+      ✔ invalid-pin
+      ✔ duplicate-pin
       ✔ invalid-organization-name
       ✔ invalid-organization-name-length
       ✔ invalid-organization-email
@@ -1633,6 +1648,8 @@
     submit
       ✔ should apply organization update (screenshots)
     errors
+      ✔ invalid-pin
+      ✔ duplicate-pin
       ✔ invalid-organization-name
       ✔ invalid-organization-name-length
       ✔ invalid-organization-email
@@ -1724,8 +1741,9 @@
     before
       ✔ should bind data to req
     view
-      ✔ should have row for each organization (screenshots)
-      ✔ should have organization row for each membership
+      ✔ should show organizations created chart (screenshots)
+      ✔ should show membership chart
+      ✔ should show invitations chart
 
   /administrator/organizations/invitation
     before
@@ -1793,8 +1811,6 @@
         ✔ invalid querystring invitationid
     returns
       ✔ object
-    redacts
-      ✔ secretCodeHash
 
   /api/administrator/organizations/invitations-count
     returns
@@ -1864,6 +1880,9 @@
       invalid-organizationid
         ✔ missing querystring organizationid
         ✔ invalid querystring organizationid
+      invalid-lifespan
+        ✔ missing posted lifespan
+        ✔ invalid posted lifespan
       invalid-secret-code
         ✔ missing posted secret-code
       invalid-secret-code-length
@@ -1878,12 +1897,12 @@
 
   /api/user/organizations/create-membership
     exceptions
-      invalid-invitationid
-        ✔ missing querystring invitationid
-        ✔ invalid querystring invitationid
       invalid-invitation
-        ✔ querystring invitationid has been used
-        ✔ posted secret-code has been used
+        ✔ invitation has been used
+        ✔ invitation has been terminated
+      invalid-organization-pin
+        ✔ missing posted organization-pin
+        ✔ invalid posted organization-pin
       invalid-secret-code
         ✔ missing posted secret-code
         ✔ invalid posted secret-code
@@ -1956,6 +1975,28 @@
     returns
       ✔ boolean
 
+  /api/user/organizations/invitation-memberships-count
+    exceptions
+      invalid-invitationid
+        ✔ missing querystring invitationid
+        ✔ invalid querystring invitationid
+      invalid-account
+        ✔ ineligible accessing account
+    returns
+      ✔ integer
+
+  /api/user/organizations/invitation-memberships
+    exceptions
+      invalid-invitationid
+        ✔ missing querystring invitationid
+        ✔ invalid querystring invitationid
+      invalid-account
+        ✔ ineligible accessing account
+    returns
+      ✔ array
+    configuration
+      ✔ environment PAGE_SIZE
+
   /api/user/organizations/invitation
     exceptions
       invalid-invitationid
@@ -1965,8 +2006,6 @@
         ✔ accessing account is not organization owner
     returns
       ✔ object
-    redacts
-      ✔ secretCodeHash
 
   /api/user/organizations/invitations-count
     exceptions
@@ -2051,8 +2090,6 @@
         ✔ querystring invitationid is used
     returns
       ✔ object
-    redacts
-      ✔ secretCodeHash
 
   /api/user/organizations/organization-membership
     exceptions
@@ -2100,6 +2137,32 @@
     configuration
       ✔ environment PAGE_SIZE
 
+  /api/user/organizations/secret-invitation
+    exceptions
+      invalid-secret-code
+        ✔ missing querystring secret-code
+        ✔ invalid querystring secret-code
+      invalid-organization-pin
+        ✔ missing querystring organization-pin
+        ✔ invalid querystring organization-pin
+      invalid-invitation
+        ✔ querystring invitationid is used
+    returns
+      ✔ object
+
+  /api/user/organizations/set-invitation-terminated
+    exceptions
+      invalid-invitationid
+        ✔ missing querystring invitationid
+        ✔ invalid querystring invitationid
+      invalid-account
+        ✔ accessing account is not organization owner
+      invalid-invitation
+        ✔ invitation is not multi-use
+        ✔ invitation is already terminated
+    returns
+      ✔ object
+
   /api/user/organizations/set-organization-owner
     exceptions
       invalid-organizationid
@@ -2122,6 +2185,14 @@
         ✔ invalid querystring organizationid
       invalid-account
         ✔ accessing account is not organization owner
+      invalid-pin
+        ✔ missing posted pin
+        ✔ invalid posted pin is not alphanumeric
+      duplicate-pin
+        ✔ duplicate posted pin
+      invalid-pin-length
+        ✔ posted pin is too short
+        ✔ posted pin is too long
       invalid-organization-name
         ✔ missing posted name
       invalid-organization-name-length
@@ -2133,6 +2204,7 @@
     receives
       ✔ required posted name
       ✔ required posted email
+      ✔ required posted pin
     returns
       ✔ object
 
@@ -2310,7 +2382,7 @@
     before
       ✔ should bind data to req
     view
-      ✔ should have row for each invoice
+      ✔ should have row for each invoice (screenshots)
       ✔ should have row for each customer
       ✔ should have row for each subscription
 
@@ -2371,6 +2443,12 @@
     submit
       ✔ should cancel subscription (screenshots)
 
+  /account/subscriptions/refund
+    before
+      ✔ should bind data to req
+    view
+      ✔ should present the refund table (screenshots)
+
   /account/subscriptions/refunds
     before
       ✔ should bind data to req
@@ -2389,6 +2467,25 @@
       ✔ should present the form
     submit
       ✔ should create refund request (screenshots)
+
+  /account/subscriptions/restore-subscription
+    exceptions
+      ✔ should reject missing subscription
+      ✔ should reject invalid subscription
+      ✔ should reject non-canceled subscription
+      ✔ should reject other account's subscription
+    before
+      ✔ should bind data to req
+    view
+      ✔ should present the form
+    submit
+      ✔ should restore subscription (screenshots)
+
+  /account/subscriptions
+    before
+      ✔ should bind data to req
+    view
+      ✔ should have option for each plan (screenshots)
 
   /account/subscriptions/subscription
     exceptions
@@ -2958,8 +3055,6 @@
       invalid-duration_in_months
         ✔ missing posted duration_in_months
         ✔ invalid posted duration_in_months
-      invalid-redeem_by_meridiem
-        ✔ invalid posted redeem_by_meridiem
       invalid-redeem_by
         ✔ invalid posted redeem_by
     receives
@@ -2967,7 +3062,7 @@
       ✔ optionally-required posted amount_off (integer, or percent_off)
       ✔ optionally-required posted currency (string, if amount_off)
       ✔ optionally-required posted percent_off (integer, or amount_off)
-      ✔ optionally-required posted expire date 
+      ✔ optionally-required posted redeem_by (date in future)
       ✔ optionally-required posted duration_in_months
     returns
       ✔ object
@@ -4182,7 +4277,7 @@
       ✔ environment PAGE_SIZE
 
   example-subscription-web-app screenshots
-    ✔ administrator creates product and plan (screenshots)
+    ✔ administrator creates product and plan
     ✔ user 1 registers and must select plan
     ✔ user 1 selects plan and must enter billing information
     ✔ user 1 registers and subscribes
@@ -4193,5 +4288,5 @@
     ✔ user 1 views shared post
 
 
-  2127 passing (3h)
+  2178 passing (2h)
 

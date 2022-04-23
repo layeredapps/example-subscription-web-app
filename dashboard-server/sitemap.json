@@ -12,15 +12,15 @@
   "modules": [
     {
       "name": "@layeredapps/organizations",
-      "version": "1.0.13"
+      "version": "1.0.22"
     },
     {
       "name": "@layeredapps/stripe-subscriptions",
-      "version": "1.0.3"
+      "version": "1.0.18"
     },
     {
       "name": "@layeredapps/maxmind-geoip",
-      "version": "1.0.12"
+      "version": "1.0.16"
     }
   ],
   "content": [],
@@ -292,8 +292,9 @@
     },
     "/administrator": {
       "htmlFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/index.html",
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/administrator/index.js",
       "templateDescription": "",
-      "verbs": "",
+      "verbs": "GET",
       "authDescription": ""
     },
     "/administrator/profile": {
@@ -416,6 +417,12 @@
     },
     "/api/administrator/deleted-accounts": {
       "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/deleted-accounts.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/administrator/metric-keys": {
+      "jsFilePath": "/node_modules/@layeredapps/dashboard/src/www/api/administrator/metric-keys.js",
       "templateDescription": "",
       "verbs": "GET",
       "authDescription": ""
@@ -951,6 +958,18 @@
       "verbs": "DELETE",
       "authDescription": ""
     },
+    "/api/user/organizations/invitation-memberships-count": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitation-memberships-count.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/invitation-memberships": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitation-memberships.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
     "/api/user/organizations/invitation": {
       "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/invitation.js",
       "templateDescription": "",
@@ -1021,6 +1040,18 @@
       "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/organizations.js",
       "templateDescription": "",
       "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/secret-invitation": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/secret-invitation.js",
+      "templateDescription": "",
+      "verbs": "GET",
+      "authDescription": ""
+    },
+    "/api/user/organizations/set-invitation-terminated": {
+      "jsFilePath": "/node_modules/@layeredapps/organizations/src/www/api/user/organizations/set-invitation-terminated.js",
+      "templateDescription": "",
+      "verbs": "PATCH",
       "authDescription": ""
     },
     "/api/user/organizations/set-organization-owner": {

@@ -112,7 +112,7 @@ describe('example-subscription-web-app screenshots', () => {
       {
         fill: '#submit-form',
         body: {
-          planid: administrator.plan.id
+          planid: administrator.plan.planid
         },
         waitAfter: async (page) => {
           while (true) {
@@ -175,7 +175,7 @@ describe('example-subscription-web-app screenshots', () => {
       {
         fill: '#submit-form',
         body: {
-          planid: administrator.plan.id
+          planid: administrator.plan.planid
         }
       },
       {
@@ -276,8 +276,8 @@ describe('example-subscription-web-app screenshots', () => {
       { hover: '#account-menu-container' },
       { click: '/account/subscriptions' },
       { click: '/account/subscriptions/subscriptions' },
-      { click: `/account/subscriptions/subscription?subscriptionid=${user.subscription.id}` },
-      { click: `/account/subscriptions/cancel-subscription?subscriptionid=${user.subscription.id}` },
+      { click: `/account/subscriptions/subscription?subscriptionid=${user.subscription.subscriptionid}` },
+      { click: `/account/subscriptions/cancel-subscription?subscriptionid=${user.subscription.subscriptionid}` },
       { fill: '#submit-form' }
     ]
     await req.post()
@@ -330,6 +330,7 @@ describe('example-subscription-web-app screenshots', () => {
         body: {
           name: 'Developers',
           email: 'organization@email.com',
+          'pin': '7890',
           'display-name': 'pm',
           'display-email': 'pm@email.com'
         }
@@ -350,7 +351,8 @@ describe('example-subscription-web-app screenshots', () => {
     await TestHelperOrganizations.createOrganization(user, {
       email: 'organization@' + user.profile.displayEmail.split('@')[1],
       name: 'My organization',
-      profileid: user.profile.profileid
+      profileid: user.profile.profileid,
+      pin: '1230'
     })
     await TestHelperOrganizations.createInvitation(user)
     const user2 = await TestHelper.createUser()
@@ -403,7 +405,8 @@ describe('example-subscription-web-app screenshots', () => {
     await TestHelperOrganizations.createOrganization(user, {
       email: 'organization@' + user.profile.displayEmail.split('@')[1],
       name: 'My organization',
-      profileid: user.profile.profileid
+      profileid: user.profile.profileid,
+      pin: '1230'
     })
     await TestHelperOrganizations.createInvitation(user)
     const req = TestHelper.createRequest('/home')
