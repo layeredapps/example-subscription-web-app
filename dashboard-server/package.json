@@ -28,13 +28,15 @@
       "@layeredapps/stripe-subscriptions"
     ],
     "server": [
-      "@layeredapps/dashboard/src/server/forward-api-requests.js"
+      "@layeredapps/dashboard/src/server/allow-api-requests-to-application.js",
+      "@layeredapps/stripe-subscriptions/src/server/bind-stripekey.js",
+      "@layeredapps/maxmind-geoip/src/server/bind-country.js"
     ],
     "proxy": [
       "@layeredapps/dashboard/src/proxy/x-account.js",
-      "@layeredapps/organizations/src/proxy/organizations/x-memberships.js",
-      "@layeredapps/organizations/src/proxy/organizations/x-organizations.js",
-      "@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js"
+      "@layeredapps/organizations/src/proxy/x-memberships.js",
+      "@layeredapps/organizations/src/proxy/x-organizations.js",
+      "@layeredapps/stripe-subscriptions/src/proxy/x-subscriptions.js"
     ]
   }
 }
