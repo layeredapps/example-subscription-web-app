@@ -9,6 +9,11 @@
     "node": ">=16.0",
     "npm": ">=8.0"
   },
+  "scripts": {
+    "deploy-check": "standard --fix && npm test | tee tests.txt && npm run generate",
+    "generate": "NODE_ENV=testing EXIT_ON_START=true GENERATE_SITEMAP_TXT=true GENERATE_API_TXT=true GENERATE_ENV_TXT=true node main.js",
+    "test": "NODE_ENV=testing STORAGE=sqlite SQLITE_DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js ."
+  },
   "dependencies": {
     "@layeredapps/dashboard": "latest",
     "@layeredapps/organizations": "latest",
