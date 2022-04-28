@@ -7,4 +7,4 @@ APPLICATION_SERVER_TOKEN=token \
 DASHBOARD_SERVER=http://localhost:9000 \
 START_APPLICATION_SERVER=false \
 APPLICATION_SERVER_PORT=4000 \
-npm test
+npm run screenshots
