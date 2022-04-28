@@ -37,7 +37,8 @@ module.exports = {
       sequelize,
       modelName: 'document'
     })
-    sequelize.sync()
+    // table creation
+    await sequelize.sync()
   },
   validExtensions,
   load,
@@ -49,7 +50,7 @@ module.exports = {
 }
 
 async function flush () {
-  await Document.destroy({ where: {} })
+  await Document.sync({ force: true })
 }
 
 async function load (documentid) {
