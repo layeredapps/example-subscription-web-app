@@ -10,7 +10,7 @@ describe('example-subscription-web-app screenshots', () => {
   beforeEach(async () => {
     // Manually add "require subscription" normally this would go in the
     // package.json directly but for the Dashboard and Organizations test
-    // suite to save screenshots they need to be able to access the home 
+    // suite to save screenshots they need to be able to access the home
     // page without a subscription.  By adding the server script here a
     // subscription is only required for these screenshots.
     const requireSubscription = require.resolve('@layeredapps/stripe-subscriptions/src/server/require-subscription.js')
@@ -192,7 +192,7 @@ describe('example-subscription-web-app screenshots', () => {
         fill: '#form-stripejs-v3',
         body: {
           email: userIdentity.email,
-          description: 'Chase',
+          description: 'Chase Sapphire',
           name: `${userIdentity.firstName} ${userIdentity.lastName}`,
           'cvc-container': { type: true, value: '111' },
           'card-container': { type: true, value: '4111111111111111' },
@@ -340,7 +340,7 @@ describe('example-subscription-web-app screenshots', () => {
         body: {
           name: 'Developers',
           email: 'organization@email.com',
-          'pin': '7890',
+          pin: '7890',
           'display-name': 'pm',
           'display-email': 'pm@email.com'
         }
