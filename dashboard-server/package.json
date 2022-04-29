@@ -28,7 +28,7 @@
     "puppeteer": "latest"
   },
   "dashboard": {
-    "title": "Example subscription web app",
+    "title": "Subscription web app",
     "modules": [
       "@layeredapps/organizations",
       "@layeredapps/stripe-subscriptions"
