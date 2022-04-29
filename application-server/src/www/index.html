@@ -87,21 +87,32 @@
           url('/public/google-fonts/open-sans-v28-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
     }
     html { width: 100%; height: 100% }
-    body { background-color: #002B36; width: 100%; height: 100%; min-height: 100%; padding: 0; margin: 0; font-family: 'Open Sans', sans-serif }
-    h1 { line-height: 2.2rem; font-size: 1.4rem; color: rgba(255, 255, 255, 0.75); margin: 0; padding: 1rem 0; font-weight: normal }
-    h1 span { color: #FFF }
+    body { background-color: var(--body-background-color); width: 100%; height: 100%; min-height: 100%; padding: 0; margin: 0; font-family: 'Open Sans', sans-serif }
+    h1 { line-height: 2.2rem; font-size: 1.4rem; color: var(--body-text-color); margin: 0; padding: 1rem 0; font-weight: normal }
+    h1 span { color: var(--body-text-color) }
     .container { display: flex; flex-direction: column; width: 80%; margin: 0 auto; height: 100% }
-    .mast { background-color: #002B36; padding: 0 0 2rem 0 }
-    .mast h2 { color: #FFF; font-size: 4rem; line-height: 5rem; font-weight: normal; padding: 0; margin: 0 0 2rem 0 }
-    a.button { background-color: rgba(255, 255, 255, 0.75); color: #002B36; font-size: 2rem; margin-left: 0.5rem; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem }
+    .mast { background-color: var(--body-background-color); padding: 0 0 2rem 0 }
+    .mast h2 { color: var(--body-text-color); font-size: 4rem; line-height: 5rem; font-weight: normal; padding: 0; margin: 0 0 2rem 0 }
+    a.button { background-color: var(--body-text-color); color: var(--body-background-color); font-size: 2rem; margin-left: 0.5rem; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem }
     @media (max-width: 960px) {
       .mast { padding: 0 }
       .mast h2 { font-size: 3rem; line-height: 3rem }
       a.button { font-size: 1.2rem !important; display: inline-block; margin: 0 2rem 2rem 0 }
     }
     .image { width: 100%; height: 100%; overflow: hidden; margin: 0 auto; background-color: rgba(0, 0, 0, 0.5); padding: 1rem 1rem 0 1rem; border-radius: 0.5rem 0.5rem 0 0 }
-    .image .wrapper { width: 100%; height: 100%; background-repeat: none }
+    .image .wrapper { width: 100%; height: 100%; background-repeat: none; background-image: url(/public/4-complete-desktop-en-light.png) }
     h1 { font-size: 1.4rem }
+    :root {
+      --body-background-color: #045;
+      --body-text-color: rgba(255, 255, 255, 0.75);
+    }
+    @media (prefers-color-scheme: dark) {
+      .image .wrapper { background-image: url(/public/4-complete-desktop-en-dark.png) }
+      :root {
+        --body-background-color: #002B36;
+        --body-text-color: rgba(255, 255, 255, 0.5);
+      }
+    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -115,7 +126,7 @@
     </div>
     <h1>An example application built with Dashboard + Organizations + Stripe Subscriptions</h1>
     <div class="image">
-      <div class="wrapper" style="background-image: url(/public/3-complete-desktop-en-dark.png)"></div>
+      <div class="wrapper"></div>
     </div>
   </div>
 </body>
