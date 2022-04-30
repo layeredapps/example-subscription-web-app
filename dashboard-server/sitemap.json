@@ -12,31 +12,28 @@
   "modules": [
     {
       "name": "@layeredapps/organizations",
-      "version": "1.0.22"
+      "version": "1.0.28"
     },
     {
       "name": "@layeredapps/stripe-subscriptions",
-      "version": "1.0.18"
+      "version": "1.0.31"
     },
     {
       "name": "@layeredapps/maxmind-geoip",
-      "version": "1.0.16"
+      "version": "1.0.20"
     }
   ],
   "content": [],
   "server": [
-    "@layeredapps/dashboard/src/server/forward-api-requests.js",
-    "/src/server/stripe-subscriptions/bind-stripekey.js",
-    "/src/server/stripe-subscriptions/require-payment-confirmation.js",
-    "/src/server/stripe-subscriptions/require-payment.js",
-    "/src/server/stripe-subscriptions/require-subscription.js",
-    "/src/server/maxmind-geoip/bind-country.js"
+    "@layeredapps/dashboard/src/server/allow-api-requests-to-application.js",
+    "@layeredapps/stripe-subscriptions/src/server/bind-stripekey.js",
+    "@layeredapps/maxmind-geoip/src/server/bind-country.js"
   ],
   "proxy": [
     "@layeredapps/dashboard/src/proxy/x-account.js",
-    "@layeredapps/organizations/src/proxy/organizations/x-memberships.js",
-    "@layeredapps/organizations/src/proxy/organizations/x-organizations.js",
-    "@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js"
+    "@layeredapps/organizations/src/proxy/x-memberships.js",
+    "@layeredapps/organizations/src/proxy/x-organizations.js",
+    "@layeredapps/stripe-subscriptions/src/proxy/x-subscriptions.js"
   ],
   "urls": {
     "/account/change-password": {

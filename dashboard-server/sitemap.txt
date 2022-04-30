@@ -1,4 +1,4 @@
-@layeredapps/dashboard 0.0.55
+@layeredapps/dashboard 0.0.72
 http://localhost:9000 (dashboard)
 http://localhost:4000 (application)
 
@@ -18,23 +18,20 @@ Special HTML files:
 @layeredapps/dashboard/redirect.html
 
 Dashboard modules:
-@layeredapps/organizations (1.0.22)
-@layeredapps/stripe-subscriptions (1.0.18)
-@layeredapps/maxmind-geoip (1.0.16)
+@layeredapps/organizations (1.0.28)
+@layeredapps/stripe-subscriptions (1.0.31)
+@layeredapps/maxmind-geoip (1.0.20)
 
 Server handlers:
-@layeredapps/dashboard/src/server/forward-api-requests.js
-/src/server/stripe-subscriptions/bind-stripekey.js
-/src/server/stripe-subscriptions/require-payment-confirmation.js
-/src/server/stripe-subscriptions/require-payment.js
-/src/server/stripe-subscriptions/require-subscription.js
-/src/server/maxmind-geoip/bind-country.js
+@layeredapps/dashboard/src/server/allow-api-requests-to-application.js
+@layeredapps/stripe-subscriptions/src/server/bind-stripekey.js
+@layeredapps/maxmind-geoip/src/server/bind-country.js
 
 Proxy handlers:
 @layeredapps/dashboard/src/proxy/x-account.js
-@layeredapps/organizations/src/proxy/organizations/x-memberships.js
-@layeredapps/organizations/src/proxy/organizations/x-organizations.js
-@layeredapps/stripe-subscriptions/src/proxy/stripe-subscriptions/x-subscriptions.js
+@layeredapps/organizations/src/proxy/x-memberships.js
+@layeredapps/organizations/src/proxy/x-organizations.js
+@layeredapps/stripe-subscriptions/src/proxy/x-subscriptions.js
 
 URL -------------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS ------------------------------ HTML --------------------------------
 /                                                                  GUEST  FULLSCREEN                 static-page                           @layeredapps/maxmind-geoip           
@@ -403,4 +400,4 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /home                                                                                                static-page                           @layeredapps/maxmind-geoip           
 /webhooks/subscriptions/index-subscription-data                    GUEST             POST            @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 
-2022-04-23T10:19:03.174Z
+2022-04-29T22:45:48.025Z

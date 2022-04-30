@@ -1,4 +1,8 @@
 
+> example-subscription-web-app@1.0.0 test
+> NODE_ENV=testing STORAGE=sqlite SQLITE_DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js .
+
+
 
   index
     PAGE_SIZE
@@ -20,14 +24,9 @@
       Port web server listens on
         ✔ default 8000
         ✔ Integer
-    ID_LENGTH
-      Length of random ID
-        ✔ default 8
-        ✔ Integer
-    ALLOW_PUBLIC_API
-      Allow HTTP access to /api
-        ✔ default false
-        ✔ Boolean
+    HOME_PATH
+      Alternative path for application home
+        ✔ String
     DELETE_DELAY
       Cool-down time in days to delete accounts
         ✔ default 7
@@ -113,9 +112,11 @@
       ✔ should not match invalid passwords
 
   internal-api/html
-    HTML#parseHTML
+    HTML#parse
       ✔ should reject invalid strings
       ✔ should return expected contents
+      ✔ should modify content link to /home
+      ✔ should modify navbar link to /home
     HTML#findOrCreateTableBody
       ✔ should require a document
       ✔ should require a table
@@ -239,12 +240,6 @@
       ✔ should exclude navbar files
       ✔ should exclude test files
 
-  internal-api/uuid
-    #random
-      ✔ should reject null length
-    #v4
-      ✔ should be a v4 uuid
-
   /account/change-password
     view
       ✔ should present the form
@@ -322,7 +317,6 @@
     view
       ✔ should present 3 days remaining message
       ✔ should present 7 days remaining message
-      ✔ should present instant deletion message
       ✔ should present instant delete message (screenshots)
 
   /account/delete-account
@@ -1654,7 +1648,7 @@
       ✔ invalid-organization-name-length
       ✔ invalid-organization-email
 
-  /account/organizations/index
+  /account/organizations
     before
       ✔ should bind data to req
     view
@@ -1737,7 +1731,7 @@
     submit
       ✔ should transfer ownership (screenshots)
 
-  /administrator/organizations/index
+  /administrator/organizations
     before
       ✔ should bind data to req
     view
@@ -2226,18 +2220,6 @@
     STRIPE_PUBLISHABLE_KEY
       The `pk_test_xxx` key from Stripe
         ✔ String
-    REQUIRE_SUBSCRIPTION
-      Users must create subscription to access application
-        ✔ default unset
-        ✔ Boolean
-    REQUIRE_PAYMENT
-      Users must resolve unpaid invoices to access application
-        ✔ default unset
-        ✔ Boolean
-    REQUIRE_PAYMENT_CONFIRMATION
-      Users must resolve payment confirmations to access application
-        ✔ default unset
-        ✔ Boolean
     OVERDUE_INVOICE_THRESHOLD
       Duration in days to allow open invoices before enforcing payment
         ✔ default 1
@@ -2932,7 +2914,7 @@
       ✔ should change page size
       ✔ should change offset
 
-  /administrator/subscriptions/subscriptions
+  /administrator/subscriptions/subscription
     before
       ✔ should reject invalid subscriptionid
       ✔ should bind data to req
@@ -3041,7 +3023,9 @@
     exceptions
       invalid-couponid
         ✔ missing posted couponid
-        ✔ invalid posted couponid is not alphanumeric_
+        ✔ invalid posted couponid is not alphanumeric
+      duplicate-couponid
+        ✔ invalid posted couponid is already used
       invalid-amount_off
         ✔ missing posted amount_off
         ✔ invalid posted amount_off
@@ -4288,5 +4272,5 @@
     ✔ user 1 views shared post
 
 
-  2178 passing (2h)
+  2169 passing (5h)
 
