@@ -2,33 +2,39 @@
   --content-background-color: #002B36;
   --content-text-color: rgba(255, 255, 255, 0.5);
   --content-th-background-color: rgba(255, 255, 255, 0.25);
-  --button-primary-background-color: rgba(255, 255, 255, 0.25);
   --content-darkest-color: rgba(255, 255, 255, 0.5);
+  --button-primary-background-color: rgba(255, 255, 255, 0.25);
   --button-primary-text-color: rgba(255, 255, 255, 0.75);
+  --button-primary-border-color: transparent;
   --button-primary-focus-background-color: rgba(255, 255, 255, 0.5);
+  --button-primary-focus-border-color: rgba(255, 255, 255, 0.5);
   --button-small-background-color: rgba(255, 255, 255, 0.25);
+  --button-small-border-color: rgba(255, 255, 255, 0.25);
   --button-small-focus-background-color: rgba(255, 255, 255, 0.55);
+  --button-small-focus-border-color: rgba(255, 255, 255, 0.55);
   --content-focus-color: #FFF;
   --entry-form-success-color: #F7F1ED;
   --entry-form-error-color: #7d9fc1;
   --entry-form-background-color: #002B36;
   --entry-form-text-color: #F7F1ED;
   --entry-form-button-background-color: #000;
+  --entry-form-button-border-color: #000;
   --entry-form-button-text-color: #F7F1ED;
   --entry-form-button-focus-background-color: #000;
+  --entry-form-button-focus-border-color: #000;
   --entry-form-button-focus-text-color:  #F7F1ED;
-  --entry-form-button-disabled-background-color: #666;
-  --entry-form-button-disabled-text-color: #000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --content-background-color: #00141A;
     --content-th-background-color: rgba(255, 255, 255, 0.125);
-    --button-primary-background-color: rgba(255, 255, 255, 0.25);
     --content-darkest-color: rgba(255, 255, 255, 0.5);
+    --button-primary-background-color: rgba(255, 255, 255, 0.125);
+    --button-primary-border-color: rgba(255, 255, 255, 0.125);
     --button-primary-text-color: rgba(255, 255, 255, 0.75);
     --button-primary-focus-background-color: rgba(255, 255, 255, 0.5);
+    --button-primary-focus-border-color: rgba(255, 255, 255, 0.5);
     --button-small-background-color: rgba(255, 255, 255, 0.25);
     --button-small-focus-background-color: rgba(255, 255, 255, 0.55);
     --content-focus-color: #FFF;
@@ -37,10 +43,10 @@
     --entry-form-background-color: #002B36;
     --entry-form-text-color: #F7F1ED;
     --entry-form-button-background-color: #000;
+    --entry-form-button-border-color: #000;
     --entry-form-button-text-color: #F7F1ED;
     --entry-form-button-focus-background-color: #000;
+    --entry-form-button-focus-border-color: #000;
     --entry-form-button-focus-text-color:  #F7F1ED;
-    --entry-form-button-disabled-background-color: #666;
-    --entry-form-button-disabled-text-color: #000;
   }
 }
