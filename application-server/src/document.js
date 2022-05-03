@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 const { Sequelize, Model, DataTypes } = require('sequelize')
 const validExtensions = [
   'bash', 'coffee', 'cpp', 'css', 'pas',
@@ -26,7 +27,7 @@ module.exports = {
         type: DataTypes.STRING(32),
         primaryKey: true,
         defaultValue: () => {
-          return Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2)
+          return crypto.randomBytes(32).toString('hex').substring(0, 6)
         }
       },
       accountid: DataTypes.STRING(32),
