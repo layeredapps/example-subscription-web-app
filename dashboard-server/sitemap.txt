@@ -1,4 +1,4 @@
-@layeredapps/dashboard 0.0.72
+@layeredapps/dashboard 0.0.119
 http://localhost:9000 (dashboard)
 http://localhost:4000 (application)
 
@@ -18,14 +18,21 @@ Special HTML files:
 @layeredapps/dashboard/redirect.html
 
 Dashboard modules:
-@layeredapps/organizations (1.0.28)
-@layeredapps/stripe-subscriptions (1.0.31)
-@layeredapps/maxmind-geoip (1.0.20)
+@layeredapps/organizations (1.0.40)
+@layeredapps/stripe-subscriptions (1.0.48)
+@layeredapps/maxmind-geoip (1.0.24)
+
+Content handlers:
+@layeredapps/dashboard/src/content/insert-csrf-token.js
+@layeredapps/dashboard/src/content/set-form-return-url.js
 
 Server handlers:
 @layeredapps/dashboard/src/server/allow-api-requests-to-application.js
-@layeredapps/stripe-subscriptions/src/server/bind-stripekey.js
+@layeredapps/stripe-subscriptions/src/server/bind-stripe-key.js
 @layeredapps/maxmind-geoip/src/server/bind-country.js
+@layeredapps/dashboard/src/server/check-csrf-token.js
+@layeredapps/dashboard/src/server/check-xss-injection.js
+@layeredapps/stripe-subscriptions/src/server/require-subscription.js
 
 Proxy handlers:
 @layeredapps/dashboard/src/proxy/x-account.js
@@ -34,7 +41,6 @@ Proxy handlers:
 @layeredapps/stripe-subscriptions/src/proxy/x-subscriptions.js
 
 URL -------------------------------------------------------------- AUTH - TEMPLATE - HTTP REQUESTS - NODEJS ------------------------------ HTML --------------------------------
-/                                                                  GUEST  FULLSCREEN                 static-page                           @layeredapps/maxmind-geoip           
 /account                                                                             GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /account/change-password                                                             GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
 /account/change-username                                                             GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
@@ -101,7 +107,7 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /account/subscriptions/start-subscription                                            GET POST        @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 /account/subscriptions/subscription                                                  GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 /account/subscriptions/subscriptions                                                 GET             @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
-/account/verify                                                    GUEST  FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
+/account/verify                                                           FULLSCREEN GET POST        @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator                                                                       GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator/account                                                               GET             @layeredapps/dashboard                @layeredapps/dashboard               
 /administrator/account-profiles                                                      GET             @layeredapps/dashboard                @layeredapps/dashboard               
@@ -397,7 +403,6 @@ URL -------------------------------------------------------------- AUTH - TEMPLA
 /api/user/subscriptions/usage-record                                                 GET             @layeredapps/stripe-subscriptions                                          
 /api/user/subscriptions/usage-record-summaries                                       GET             @layeredapps/stripe-subscriptions                                          
 /api/user/update-profile                                                             PATCH           @layeredapps/dashboard                                                     
-/home                                                                                                static-page                           @layeredapps/maxmind-geoip           
 /webhooks/subscriptions/index-subscription-data                    GUEST             POST            @layeredapps/stripe-subscriptions     @layeredapps/stripe-subscriptions    
 
-2022-04-29T22:45:48.025Z
+2022-05-17T16:19:31.405Z

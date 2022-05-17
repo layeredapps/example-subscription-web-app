@@ -1,6 +1,6 @@
 
 > example-subscription-web-app@1.0.0 test
-> NODE_ENV=testing STORAGE=sqlite SQLITE_DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js .
+> PORT=50014 NODE_ENV=testing STORAGE=sqlite DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js .
 
 
 
@@ -12,6 +12,9 @@
     DASHBOARD_SERVER
       URL of dashboard server
         ✔ Address
+    DASHBOARD_SESSION_KEY
+      An application-level secret for user session tokens
+        ✔ String
     DOMAIN
       Domain of server
         ✔ default unset
@@ -49,9 +52,13 @@
       Disable UI (not API) for registering
         ✔ default unset
         ✔ Boolean
+    MAXIMUM_POST_DATA_LENGTH
+      Largest POST payload accepted in bytes
+        ✔ default 2000000
+        ✔ Integer
     MINIMUM_PASSWORD_LENGTH
       Shortest password length
-        ✔ default 1
+        ✔ default 6
         ✔ Integer
     MAXIMUM_PASSWORD_LENGTH
       Longest password length
@@ -59,7 +66,7 @@
         ✔ Integer
     MINIMUM_USERNAME_LENGTH
       Shortest username length
-        ✔ default 1
+        ✔ default 6
         ✔ Integer
     MAXIMUM_USERNAME_LENGTH
       Longest username length
@@ -91,6 +98,12 @@
       ✔ should remap urls to object
       ✔ should capitalize the last segment
       ✔ should capitalize hyphenated last segment
+
+  content/insert-csrf-token
+    page
+      ✔ should add CSRF token to input[name=csrf-token]
+    template
+      ✔ should add CSRF token to input[name=csrf-token]
 
   internal-api/format
     Format#parseDate
@@ -250,6 +263,8 @@
       ✔ invalid-new-password-length
       ✔ invalid-confirm-password
       ✔ invalid-password
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/change-username
     view
@@ -260,6 +275,8 @@
       ✔ invalid-new-username
       ✔ invalid-new-username-length
       ✔ invalid-password
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/create-profile
     view
@@ -302,6 +319,8 @@
       ✔ invalid-location
       ✔ invalid-company-name
       ✔ invalid-website
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/create-reset-code
     view
@@ -312,6 +331,8 @@
       ✔ invalid-secret-code (missing)
       ✔ invalid-secret-code is not alphanumeric
       ✔ invalid-secret-code-length
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/delete-account-complete
     view
@@ -326,29 +347,32 @@
       ✔ should mark account deleted (screenshots)
     errors
       ✔ invalid-password
+      ✔ invalid-csrf-token
 
   /account/delete-profile
     before
       ✔ should bind data
-    exceptions
-      ✔ invalid-profileid
-      ✔ invalid-profile
-      ✔ invalid-account
     view
       ✔ should present the form
     submit
       ✔ should delete profile (screenshots)
+    errors
+      ✔ invalid-profileid
+      ✔ invalid-profile
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/delete-reset-code
     before
       ✔ should bind data
-    exceptions
-      ✔ invalid-reset-codeid
-      ✔ invalid-account
     view
       ✔ should present the form
     submit
       ✔ should delete reset code (screenshots)
+    errors
+      ✔ invalid-reset-codeid
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/edit-profile
     view
@@ -391,12 +415,18 @@
       ✔ invalid-location
       ✔ invalid-company-name
       ✔ invalid-website
+      ✔ invalid-profileid
+      ✔ invalid-account
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/end-all-sessions
     view
       ✔ should present the form
     submit
       ✔ should generate a new session key (screenshots)
+    errors
+      ✔ invalid-csrf-token
 
   /account/end-session
     before
@@ -406,6 +436,11 @@
     submit
       ✔ should end the session (screenshots)
       ✔ should end current session
+    errors
+      ✔ invalid-sessionid
+      ✔ invalid-session
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account
     view
@@ -419,6 +454,9 @@
     view
       ✔ should present the profile table (screenshots)
       ✔ should show fields if data exists
+    errors
+      ✔ invalid-profileid
+      ✔ invalid-account
 
   /account/profiles
     before
@@ -427,7 +465,6 @@
       ✔ should return one page (screenshots)
       ✔ should change page size
       ✔ should change offset
-      ✔ should show fields if data exists
 
   /account/register
     view
@@ -498,6 +535,9 @@
       ✔ should bind data to req
     view
       ✔ should present the reset code table (screenshots)
+    errors
+      ✔ invalid-reset-codeid
+      ✔ invalid-account
 
   /account/reset-codes
     before
@@ -522,6 +562,9 @@
       ✔ should bind data to req
     view
       ✔ should present the session table (screenshots)
+    errors
+      ✔ invalid-sessionid
+      ✔ invalid-account
 
   /account/sessions
     before
@@ -539,6 +582,10 @@
       ✔ should present the form
     submit
       ✔ should set the profile as default (screenshots)
+    errors
+      ✔ invalid-profileid
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/signin
     view
@@ -572,6 +619,8 @@
     errors
       ✔ invalid-username
       ✔ invalid-password
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/account-profiles
     before
@@ -581,6 +630,8 @@
       ✔ should return one page
       ✔ should change page size
       ✔ should change offset
+    errors
+      ✔ invalid-accountid
 
   /administrator/account-reset-codes
     before
@@ -590,6 +641,8 @@
       ✔ should return one page
       ✔ should change page size
       ✔ should change offset
+    errors
+      ✔ invalid-accountid
 
   /administrator/account-sessions
     before
@@ -599,6 +652,8 @@
       ✔ should return one page
       ✔ should change page size
       ✔ should change offset
+    errors
+      ✔ invalid-accountid
 
   /administrator/account
     before
@@ -609,6 +664,8 @@
       ✔ should present the sessions table
       ✔ should hide empty reset codes table
       ✔ should present a populated reset codes table
+    errors
+      ✔ invalid-accountid
 
   /administrator/accounts
     before
@@ -634,7 +691,12 @@
     view
       ✔ should present the form
     submit
-      ✔ should apply account update (screenshots)
+      ✔ should assign administrator (screenshots)
+    errors
+      ✔ invalid-account-deleting
+      ✔ invalid-account-administrator
+      ✔ invalid-accountid
+      ✔ invalid-csrf-token
 
   /administrator/create-reset-code
     before
@@ -647,16 +709,23 @@
       ✔ invalid-secret-code (missing)
       ✔ invalid-secret-code is not alphanumeric
       ✔ invalid-secret-code-length
+      ✔ invalid-accountid
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/delete-account
-    exceptions
-      ✔ should reject invalid accountid
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should immediately delete (screenshots)
+    errors
+      ✔ invalid-account-not-deleting
+      ✔ invalid-owner-account
+      ✔ invalid-administrator-account
+      ✔ invalid-accountid
+      ✔ invalid-csrf-token
 
   /administrator/delete-schedule
     before
@@ -677,6 +746,8 @@
     view
       ✔ should present the profile table (screenshots)
       ✔ should show fields if data exists
+    errors
+      ✔ invalid-profileid
 
   /administrator/profiles
     before
@@ -685,13 +756,14 @@
       ✔ should return one page (screenshots)
       ✔ should change page size
       ✔ should change offset
-      ✔ should show fields if data exists
 
   /administrator/reset-code
     before
       ✔ should bind data to req
     view
       ✔ should present the reset code table (screenshots)
+    errors
+      ✔ invalid-codeid
 
   /administrator/reset-codes
     before
@@ -709,6 +781,9 @@
       ✔ should present the form
     submit
       ✔ should reset session key (screenshots)
+    errors
+      ✔ invalid-accountid
+      ✔ invalid-csrf-token
 
   /administrator/revoke-administrator
     before
@@ -717,6 +792,9 @@
       ✔ should present the form
     submit
       ✔ should revoke administrator status (screenshots)
+    errors
+      ✔ invalid-accountid
+      ✔ invalid-account-administrator
 
   /administrator/schedule-account-delete
     before
@@ -725,12 +803,18 @@
       ✔ should present the form
     submit
       ✔ should schedule account for deletion (screenshots)
+    errors
+      ✔ invalid-accountid
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /administrator/session
     before
       ✔ should bind data to req
     view
       ✔ should present the session table (screenshots)
+    errors
+      ✔ invalid-sessionid
 
   /administrator/sessions
     before
@@ -748,6 +832,12 @@
       ✔ should present the form
     submit
       ✔ should change ownership (screenshots)
+    errors
+      ✔ invalid-accountid
+      ✔ invalid-account
+      ✔ invalid-account-receiving
+      ✔ invalid-account-receiving
+      ✔ invalid-csrf-token
 
   /api/administrator/account
     exceptions
@@ -1531,64 +1621,143 @@
     view
       ✔ should present the form
       ✔ should exclude invalid profiles
+      ✔ should have elements for full-name
+      ✔ should have elements for display-name
+      ✔ should have elements for contact-email
+      ✔ should have elements for display-email
+      ✔ should have elements for dob
+      ✔ should have elements for phone
+      ✔ should have elements for occupation
+      ✔ should have elements for location
+      ✔ should have elements for company-name
+      ✔ should have elements for website
     submit
       ✔ should accept valid existing profile
       ✔ should accept invitation and create profile (screenshots)
+      ✔ should accept invitation and create profile with full-name
+      ✔ should accept invitation and create profile with display-name
+      ✔ should accept invitation and create profile with contact-email
+      ✔ should accept invitation and create profile with display-email
+      ✔ should accept invitation and create profile with dob in YYYY-MM-DD
+      ✔ should accept invitation and create profile with dob in MM-DD-YYYY
+      ✔ should accept invitation and create profile with phone
+      ✔ should accept invitation and create profile with occupation
+      ✔ should accept invitation and create profile with location
+      ✔ should accept invitation and create profile with company-name
+      ✔ should accept invitation and create profile with website
     errors
       ✔ invalid-account
+      ✔ invalid-first-name
+      ✔ invalid-first-name-length
+      ✔ invalid-last-name
+      ✔ invalid-last-name-length
+      ✔ invalid-contact-email
+      ✔ invalid-display-email
+      ✔ invalid-display-name
+      ✔ invalid-display-name-length
+      ✔ invalid-dob
+      ✔ invalid-phone
+      ✔ invalid-occupation
+      ✔ invalid-location
+      ✔ invalid-company-name
+      ✔ invalid-website
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/organizations/create-invitation
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should create invitation (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/organizations/create-organization
     view
       ✔ should present the form
+      ✔ should have elements for full-name
+      ✔ should have elements for display-name
+      ✔ should have elements for contact-email
+      ✔ should have elements for display-email
+      ✔ should have elements for dob
+      ✔ should have elements for phone
+      ✔ should have elements for occupation
+      ✔ should have elements for location
+      ✔ should have elements for company-name
+      ✔ should have elements for website
     submit
       ✔ should accept valid existing profile
-      ✔ should create organization (screenshots)
+      ✔ should create organization and new profile (screenshots)
+      ✔ should create organization and new profile with full-name
+      ✔ should create organization and new profile with display name
+      ✔ should create organization and new profile with contact-email
+      ✔ should create organization and new profile with display-email
+      ✔ should create organization and new profile with dob in YYYY-MM-DD
+      ✔ should create organization and new profile with dob in MM-DD-YYYY
+      ✔ should create organization and new profile with phone
+      ✔ should create organization and new profile with occupation
+      ✔ should create organization and new profile with location
+      ✔ should create organization and new profile with company-name
+      ✔ should create organization and new profile with website
     errors
       ✔ invalid-pin
       ✔ duplicate-pin
       ✔ invalid-organization-name
       ✔ invalid-organization-name-length
       ✔ invalid-organization-email
+      ✔ invalid-first-name
+      ✔ invalid-first-name-length
+      ✔ invalid-last-name
+      ✔ invalid-last-name-length
+      ✔ invalid-contact-email
+      ✔ invalid-display-email
+      ✔ invalid-display-name
+      ✔ invalid-display-name-length
+      ✔ invalid-dob
+      ✔ invalid-phone
+      ✔ invalid-occupation
+      ✔ invalid-location
+      ✔ invalid-company-name
+      ✔ invalid-website
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/organizations/delete-invitation
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data
     view
       ✔ should present the form
     submit
       ✔ should delete invitation (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/organizations/delete-membership
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete membership (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/organizations/delete-organization
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete organization (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/organizations/edit-membership-profile
     view
@@ -1631,10 +1800,10 @@
       ✔ invalid-location
       ✔ invalid-company-name
       ✔ invalid-website
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/organizations/edit-organization
-    exceptions
-      ✔ should require owner
     before
       ✔ should bind data to req
     view
@@ -1647,6 +1816,9 @@
       ✔ invalid-organization-name
       ✔ invalid-organization-name-length
       ✔ invalid-organization-email
+      ✔ should require owner
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/organizations
     before
@@ -1657,18 +1829,22 @@
 
   /account/organizations/invitation
     before
-      ✔ should require owner
       ✔ should bind data to req
     view
       ✔ should have row for invitation (screenshots)
+    errors
+      ✔ invalid-account
 
   /account/organizations/membership
     before
-      ✔ should reject non-member
       ✔ should bind data to req
     view
       ✔ should have row for membership (screenshots)
       ✔ should show profile fields if data exists
+    errors
+      ✔ invalid-membershipid
+      ✔ invalid-organizationid
+      ✔ invalid-account
 
   /account/organizations/memberships
     before
@@ -1681,12 +1857,13 @@
 
   /account/organizations/organization-invitations
     before
-      ✔ should require owner
       ✔ should bind data to req
     view
       ✔ should return one page (screenshots)
       ✔ should change page size
       ✔ should change offset
+    errors
+      ✔ invalid-account
 
   /account/organizations/organization-memberships
     before
@@ -1698,10 +1875,11 @@
 
   /account/organizations/organization
     before
-      ✔ should reject non-member
       ✔ should bind data to req
     view
       ✔ should have row for organization (screenshots)
+    errors
+      ✔ invalid-account
 
   /account/organizations/organizations
     before
@@ -1712,24 +1890,26 @@
       ✔ should change offset
 
   /account/organizations/revoke-membership
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete membership (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/organizations/transfer-organization
-    exceptions
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should transfer ownership (screenshots)
+    errors
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /administrator/organizations
     before
@@ -2228,8 +2408,12 @@
       Alternate URL path to your start subscription flow
         ✔ default /account/subscriptions/start-subscription
         ✔ String
+    SUBSCRIPTION_REFUND_PERIOD
+      Time in seconds after an invoice is paid that users may refund a charge
+        ✔ default 3600
+        ✔ Integer
 
-  server/stripe-subscriptions/bind-stripekey
+  server/stripe-subscriptions/bind-stripe-key
     after
       ✔ should bind data to req
 
@@ -2266,14 +2450,18 @@
       ✔ should require expiration month for no stripe.js
       ✔ should require expiration year for no stripe.js
       ✔ should add payment information no stripe.js (screenshots)
+    errors
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/subscriptions/billing-profile
     before
-      ✔ should reject invalid customer
-      ✔ should reject other account's customer
       ✔ should bind data to req
     view
       ✔ should have row for customer (screenshots)
+    errors
+      ✔ invalid-customerid
+      ✔ invalid-account
 
   /account/subscriptions/billing-profiles
     before
@@ -2284,11 +2472,6 @@
       ✔ should change offset
 
   /account/subscriptions/cancel-subscription
-    exceptions
-      ✔ should reject missing subscription
-      ✔ should reject invalid subscription
-      ✔ should reject canceled subscription
-      ✔ should reject other account's subscription
     before
       ✔ should bind data to req
     view
@@ -2303,6 +2486,12 @@
       ✔ should cancel free trial at period end
       ✔ should cancel paid subscription and credit account
       ✔ should cancel paid subscription and show refund
+    errors
+      ✔ invalid-csrf-token
+    error
+      ✔ invalid-subscriptionid
+      ✔ invalid-subscription
+      ✔ invalid-account
 
   /account/subscriptions/change-plan
     before
@@ -2313,16 +2502,14 @@
     submit
       ✔ should apply plan update (screenshots)
     errors
-      ✔ should reject paid plan without payment information
+      ✔ invalid-paymentmethodid
+      ✔ invalid-csrf-token
 
   /account/subscriptions/confirm-payment
     view
       ✔ should display stripe.js confirmation
 
   /account/subscriptions/confirm-subscription
-    exceptions
-      ✔ invalid-planid
-      ✔ invalid-plan
     before
       ✔ should bind data to req
     view
@@ -2331,6 +2518,9 @@
       ✔ should start subscription (screenshots)
     errors
       ✔ invalid-paymentmethodid
+      ✔ invalid-planid
+      ✔ invalid-plan
+      ✔ invalid-csrf-token
 
   /account/subscriptions/create-billing-profile
     view
@@ -2348,17 +2538,21 @@
       ✔ should require email for stripe.js v3
       ✔ should create billing profile for no stripe.js
       ✔ should create billing profile for stripe.js v3 (screenshots)
+    errors
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/subscriptions/delete-billing-profile
-    exceptions
-      ✔ invalid-customerid
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete billing profile (screenshots)
+    errors
+      ✔ invalid-customerid
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/subscriptions
     before
@@ -2369,13 +2563,13 @@
       ✔ should have row for each subscription
 
   /account/subscriptions/invoice
-    exceptions
-      ✔ invalid-invoiceid
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should have row for invoice (screenshots)
+    errors
+      ✔ invalid-invoiceid
+      ✔ invalid-account
 
   /account/subscriptions/invoices
     before
@@ -2386,25 +2580,27 @@
       ✔ should change offset
 
   /account/subscriptions/pay-invoice
-    exceptions
-      ✔ should reject invalid invoice
-      ✔ invalid-account
-      ✔ should reject paid invoice
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should pay invoice (screenshots)
+    errors
+      ✔ invalid-invoiceid
+      ✔ invalid-account
+      ✔ invoice-paid
+      ✔ invalid-csrf-token
 
   /account/subscriptions/plan
     before
-      ✔ should reject invalid plan
-      ✔ should reject never published plan
-      ✔ should reject unpublished plan
       ✔ should bind data to req
     view
       ✔ should have row for plan (screenshots)
+    errors
+      ✔ invalid-planid
+      ✔ invalid-plan
+      ✔ unpublished-plan
 
   /account/subscriptions/plans
     before
@@ -2415,15 +2611,16 @@
       ✔ should change offset
 
   /account/subscriptions/refund-invoice
-    exceptions
-      ✔ invalid-invoiceid
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should cancel subscription (screenshots)
+    errors
+      ✔ invalid-invoiceid
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/subscriptions/refund
     before
@@ -2440,43 +2637,47 @@
       ✔ should change offset
 
   /account/subscriptions/request-refund
-    exceptions
-      ✔ invalid-invoice
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should create refund request (screenshots)
+    errors
+      ✔ invalid-invoice
+      ✔ invalid-account
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /account/subscriptions/restore-subscription
-    exceptions
-      ✔ should reject missing subscription
-      ✔ should reject invalid subscription
-      ✔ should reject non-canceled subscription
-      ✔ should reject other account's subscription
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should restore subscription (screenshots)
+    errors
+      ✔ invalid-subscriptionid
+      ✔ invalid-subscription
+      ✔ invalid-account
+      ✔ invalid-csrf-token
 
   /account/subscriptions
     before
       ✔ should bind data to req
     view
       ✔ should have option for each plan (screenshots)
+    errors
+      ✔ invalid-csrf-token
 
   /account/subscriptions/subscription
-    exceptions
-      ✔ invalid-subscriptionid
-      ✔ invalid-account
     before
       ✔ should bind data to req
     view
       ✔ should present the subscription table (screenshots)
+    errors
+      ✔ invalid-subscriptionid
+      ✔ invalid-account
 
   /account/subscriptions/subscriptions
     before
@@ -2487,35 +2688,38 @@
       ✔ should change offset
 
   /administrator/subscriptions/apply-customer-coupon
-    exceptions
-      ✔ should reject invalid customer
-      ✔ should reject customer with coupon
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should apply coupon (screenshots)
+    errors
+      ✔ invalid-customerid
+      ✔ invalid-customer
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/apply-subscription-coupon
-    exceptions
-      ✔ should reject invalid subscription
-      ✔ should reject canceling subscription
-      ✔ should reject free subscription
-      ✔ should reject subscription with coupon
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should apply coupon (screenshots)
+    errors
+      ✔ invalid-subscriptionid
+      ✔ invalid-subscription-canceling
+      ✔ invalid-subscription-free
+      ✔ already-discounted
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/charge
     before
-      ✔ should reject invalid charge
       ✔ should bind data to req
     view
       ✔ should present the charge table (screenshots)
+    errors
+      ✔ invalid-chargeid
 
   /administrator/subscriptions/charges
     before
@@ -2527,10 +2731,11 @@
 
   /administrator/subscriptions/coupon
     before
-      ✔ should reject invalid coupon
       ✔ should bind data to req
     view
       ✔ should present the coupon table (screenshots)
+    errors
+      ✔ should reject invalid coupon
 
   /administrator/subscriptions/coupons
     before
@@ -2556,6 +2761,9 @@
       ✔ should require valid duration in months if repeating
       ✔ should require valid redeem_by if provided
       ✔ should create coupon (screenshots)
+    errors
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/create-plan
     view
@@ -2576,6 +2784,9 @@
       ✔ should reject invalid interval_count
       ✔ should reject invalid trial_period_days
       ✔ should create plan (screenshots)
+    errors
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/create-product
     view
@@ -2585,13 +2796,17 @@
       ✔ should enforce name length
       ✔ should reject missing statement_descriptor
       ✔ should create product (screenshots)
+    errors
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/customer
     before
-      ✔ should reject invalid customer
       ✔ should bind data to req
     view
       ✔ should present the customer table (screenshots)
+    errors
+      ✔ invalid-customerid
 
   /administrator/subscriptions/customers
     before
@@ -2602,40 +2817,39 @@
       ✔ should change offset
 
   /administrator/subscriptions/delete-coupon
-    exceptions
-      ✔ should reject invalid couponid
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete coupon (screenshots)
+    errors
+      ✔ invalid-couponid
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/delete-plan
-    exceptions
-      ✔ should reject invalid planid
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete plan (screenshots)
+    errors
+      ✔ invalid-planid
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/delete-product
-    exceptions
-      ✔ should reject invalid productid
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should delete product (screenshots)
+    errors
+      ✔ invalid-productid
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/delete-subscription
-    exceptions
-      ✔ should reject missing subscription
-      ✔ should reject invalid subscription
-      ✔ should reject canceled subscription
     before
       ✔ should bind data to req
     view
@@ -2650,34 +2864,41 @@
       ✔ should cancel free trial at period end
       ✔ should cancel paid subscription and credit account
       ✔ should cancel paid subscription and show refund
+    errors
+      ✔ invalid-subscriptionid
+      ✔ invalid-subscription
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/deny-refund
-    exceptions
-      ✔ should reject invalid chargeid
-      ✔ should reject charge without refund request
-      ✔ should reject denied refund
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should deny refund (screenshots)
+    errors
+      ✔ invalid-chargeid
+      ✔ no-refund-request
+      ✔ already-denied
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/edit-coupon
     before
-      ✔ should reject invalid couponid
-      ✔ should reject unpublished coupon
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should reject missing name
       ✔ should update coupon (screenshots)
+    errors
+      ✔ invalid-couponid
+      ✔ invalid-coupon
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/edit-plan
     before
-      ✔ should reject invalid planid
-      ✔ should reject unpublished plan
       ✔ should bind data to req
     view
       ✔ should present the form
@@ -2685,11 +2906,13 @@
       ✔ should reject missing productid
       ✔ should reject invalid trial period
       ✔ should update plan (screenshots)
+    errors
+      ✔ invalid-planid
+      ✔ unpublished-plan
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/edit-product
     before
-      ✔ should reject invalid productid
-      ✔ should reject unpublished product
       ✔ should bind data to req
     view
       ✔ should present the form
@@ -2699,29 +2922,36 @@
       ✔ should reject missing statement_descriptor
       ✔ should reject invalid unit_label
       ✔ should update product (screenshots)
+    errors
+      ✔ invalid-productid
+      ✔ unpublished-product
+      ✔ invalid-xss-input
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/flag-charge
-    exceptions
-      ✔ should reject invalid chargeid
-      ✔ should reject flagged charge
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should flag charge (screenshots)
+    errors
+      ✔ invalid-chargeid
+      ✔ invalid-charge
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/forgive-invoice
-    exceptions
-      ✔ should reject invalid invoiceid
-      ✔ should reject paid invoice
-      ✔ should reject uncollectible invoice
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should forgive invoice (screenshots)
+    errors
+      ✔ invalid-invoiceid
+      ✔ already-paid
+      ✔ already-forgiven
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions
     before
@@ -2733,10 +2963,11 @@
 
   /administrator/subscriptions/invoice
     before
-      ✔ should reject invalid invoiceid
       ✔ should bind data to req
     view
       ✔ should present the invoice table (screenshots)
+    error
+      ✔ invalid-invoiceid
 
   /administrator/subscriptions/invoices
     before
@@ -2748,10 +2979,11 @@
 
   /administrator/subscriptions/payment-intent
     before
-      ✔ should reject invalid paymentintentid
       ✔ should bind data to req
     view
       ✔ should have row for payment intent (screenshots)
+    errors
+      ✔ invalid-paymentintentid
 
   /administrator/subscriptions/payment-intents
     before
@@ -2763,10 +2995,11 @@
 
   /administrator/subscriptions/payment-method
     before
-      ✔ should reject invalid paymentmethodid
       ✔ should bind data to req
     view
       ✔ should have row for payment method (screenshots)
+    error
+      ✔ invalid-paymentmethodid
 
   /administrator/subscriptions/payment-methods
     before
@@ -2777,15 +3010,16 @@
       ✔ should change offset
 
   /administrator/subscriptions/payout
-    before
-      ✔ should reject invalid payoutid
+    errors
+      ✔ invalid-payoutid
 
   /administrator/subscriptions/plan
     before
-      ✔ should reject invalid planid
       ✔ should bind data to req
     view
       ✔ should present the plan table (screenshots)
+    errors
+      ✔ invalid-planid
 
   /administrator/subscriptions/plans
     before
@@ -2797,10 +3031,11 @@
 
   /administrator/subscriptions/product
     before
-      ✔ should reject invalid productid
       ✔ should bind data to req
     view
       ✔ should have row for product (screenshots)
+    errors
+      ✔ invalid-productid
 
   /administrator/subscriptions/products
     before
@@ -2811,48 +3046,55 @@
       ✔ should change offset
 
   /administrator/subscriptions/publish-coupon
-    exceptions
-      ✔ should reject invalid couponid
-      ✔ should reject published coupon
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should publish coupon (screenshots)
+    errors
+      ✔ invalid-couponid
+      ✔ already-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/publish-plan
-    exceptions
-      ✔ should reject invalid planid
-      ✔ should reject published plan
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should publish plan (screenshots)
+    errors
+      ✔ invalid-planid
+      ✔ already-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/publish-product
-    exceptions
-      ✔ should reject invalid productid
-      ✔ should reject published product
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should publish product (screenshots)
+    errors
+      ✔ invalid-productid
+      ✔ already-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/refund-charge
-    exceptions
-      ✔ should reject invalid chargeid
-      ✔ should reject refunded charge
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should refund charge (screenshots)
+    errors
+      ✔ invalid-chargeid
+      ✔ already-refunded
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/refund-requests
     before
@@ -2864,10 +3106,11 @@
 
   /administrator/subscriptions/refund
     before
-      ✔ should reject invalid refundid
       ✔ should bind data to req
     view
       ✔ should have row for refund (screenshots)
+    errors
+      ✔ invalid-refundid
 
   /administrator/subscriptions/refunds
     before
@@ -2878,33 +3121,36 @@
       ✔ should change offset
 
   /administrator/subscriptions/revoke-customer-coupon
-    exceptions
-      ✔ should reject invalid customer
-      ✔ should reject customer without discount
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should remove coupon (screenshots)
+    errors
+      ✔ invalid-customerid
+      ✔ no-discount
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/revoke-subscription-coupon
-    exceptions
-      ✔ should reject invalid subscription
-      ✔ should reject subscription without discount
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should remove coupon (screenshots)
+    errors
+      ✔ invalid-subscriptionid
+      ✔ no-discount
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/setup-intent
     before
-      ✔ should reject invalid setupintentid
       ✔ should bind data to req
     view
       ✔ should have row for setup intent (screenshots)
+    errors
+      ✔ invalid-setupintentid
 
   /administrator/subscriptions/setup-intents
     before
@@ -2916,10 +3162,11 @@
 
   /administrator/subscriptions/subscription
     before
-      ✔ should reject invalid subscriptionid
       ✔ should bind data to req
     view
       ✔ should present the subscription table (screenshots)
+    errors
+      ✔ invalid-subscriptionid
 
   /administrator/subscriptions/subscriptions
     before
@@ -2930,40 +3177,43 @@
       ✔ should change offset
 
   /administrator/subscriptions/unpublish-coupon
-    exceptions
-      ✔ should reject invalid couponid
-      ✔ should reject never published coupon
-      ✔ should reject unpublished coupon
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should unpublish coupon (screenshots)
+    errors
+      ✔ invalid-couponid
+      ✔ not-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/unpublish-plan
-    exceptions
-      ✔ should reject invalid planid
-      ✔ should never published plan
-      ✔ should reject unpublished plan
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should unpublish plan (screenshots)
+    errors
+      ✔ invalid-planid
+      ✔ not-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /administrator/subscriptions/unpublish-product
-    exceptions
-      ✔ should reject invalid productid
-      ✔ should never published product
-      ✔ should reject unpublished product
     before
       ✔ should bind data to req
     view
       ✔ should present the form
     submit
       ✔ should unpublish product (screenshots)
+    errors
+      ✔ invalid-productid
+      ✔ not-published
+      ✔ already-unpublished
+      ✔ invalid-csrf-token
 
   /api/administrator/subscriptions/charge
     exceptions
@@ -4272,5 +4522,5 @@
     ✔ user 1 views shared post
 
 
-  2169 passing (5h)
+  2366 passing (5h)
 
