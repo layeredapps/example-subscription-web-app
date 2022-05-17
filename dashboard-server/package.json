@@ -12,8 +12,8 @@
   "scripts": {
     "deploy-check": "standard --fix && npm test | tee tests.txt && npm run generate",
     "generate": "PORT=50013 NODE_ENV=testing EXIT_ON_START=true GENERATE_SITEMAP_TXT=true GENERATE_API_TXT=true GENERATE_ENV_TXT=true node main.js",
-    "test": "PORT=50014 NODE_ENV=testing STORAGE=sqlite SQLITE_DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js .",
-    "screenshots": "NODE_ENV=testing STORAGE=sqlite SQLITE_DATABASE=dashboard mocha --grep screenshots --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js ."
+    "test": "PORT=50014 NODE_ENV=testing STORAGE=sqlite DATABASE=dashboard mocha --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js .",
+    "screenshots": "NODE_ENV=testing STORAGE=sqlite DATABASE=dashboard mocha --grep screenshots --ignore 'node_modules/hpagent/**/*' --retries 3 --timeout 480000 --slow 480000 --recursive --extension .test.js ."
   },
   "dependencies": {
     "@layeredapps/dashboard": "latest",
@@ -35,7 +35,7 @@
     ],
     "server": [
       "@layeredapps/dashboard/src/server/allow-api-requests-to-application.js",
-      "@layeredapps/stripe-subscriptions/src/server/bind-stripekey.js",
+      "@layeredapps/stripe-subscriptions/src/server/bind-stripe-key.js",
       "@layeredapps/maxmind-geoip/src/server/bind-country.js"
     ],
     "proxy": [
