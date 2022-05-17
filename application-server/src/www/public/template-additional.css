@@ -1,21 +1,50 @@
 .home .template .navigation { display: none }
+.home menu img { filter: var(--template-svg-white) }
+.home menu button:focus { box-shadow: 0 0 0 0.2rem var(--template-focus-color); position: relative; z-index: 999 }
 
 :root {
   --template-background-color: #002B36;
   --template-text-color: rgba(255, 255, 255, 0.75);
-  --template-focus-color: #2c4b4b;
+  --template-focus-color: #498484;
+  --template-blue: #1d3434;
   --template-darkest-color: rgba(0, 0, 0, 0.75);
   --template-highlight-focus-color: rgba(255, 255, 255, 0.5);
-  --template-shadow-color: rgba(0, 0, 0, 0.25);
+  --template-menu-shadow-color: rgba(0, 0, 0, 0.25);
+  --template-menu-focus-icon-filter: var(--template-white);
+  --template-menu-trigger-focus-text-color: var(--template-white);
+  --template-menu-link-hover-background-color: rgba(255, 255, 255, 0.125);
+  --template-menu-link-hover-text-color: var(--template-light);
+  --template-menu-icon-filter: var(--template-svg-white);
+  --template-menu-focus-icon-filter: var(--template-svg-white);
+  --template-menu-active-icon-filter: var(--template-svg-white);
+  --template-navigation-link-icon-filter: var(--template-svg-white);
+  --template-navigation-link-focus-icon-filter: var(--template-svg-white);
+  --template-navigation-link-focus-text-color: var(--template-white);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --template-background-color: #00141A;
-    --template-text-color: rgba(247, 241, 237, 0.75);
-    --template-focus-color: #011f27;
-    --template-darkest-color: #2F365F;
-    --template-highlight-focus-color: rgba(255, 255, 255, 0.25);
-    --template-shadow-color: #000;
+    --template-text-color: rgba(255, 255, 255, 0.75);
+    --template-focus-color: #2C4B4B;
+    --template-blue: #1d3434;
+    --template-darkest-color: rgba(0, 0, 0, 0.75);
+    --template-highlight-focus-color: rgba(255, 255, 255, 0.5);
+    --template-menu-shadow-color: rgba(0, 0, 0, 0.25);
+    --template-menu-focus-icon-filter: var(--template-white);
+    --template-menu-trigger-text-color: var(--template-dark);
+    --template-menu-trigger-active-text-color: var(--template-dark);
+    --template-menu-trigger-active-icon-filter: var(--template-white);
+    --template-menu-trigger-hover-icon-filter: var(--template-white);
+    --template-menu-trigger-focus-text-color: var(--template-white);
+    --template-menu-link-text-color: var(--template-dark);
+    --template-menu-link-hover-background-color: rgba(255, 255, 255, 0.125);
+    --template-menu-link-hover-text-color: var(--template-dark);
+    --template-menu-icon-filter: var(--template-svg-white);
+    --template-menu-focus-icon-filter: var(--template-svg-white);
+    --template-menu-active-icon-filter: var(--template-svg-white);
+    --template-navigation-link-icon-filter: var(--template-svg-white);
+    --template-navigation-link-focus-icon-filter: var(--template-svg-white);
+    --template-navigation-link-focus-text-color: var(--template-white);
   }
 }

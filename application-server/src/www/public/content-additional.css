@@ -1,52 +1,49 @@
 :root {
-  --content-background-color: #002B36;
-  --content-text-color: rgba(255, 255, 255, 0.5);
-  --content-th-background-color: rgba(255, 255, 255, 0.25);
-  --content-darkest-color: rgba(255, 255, 255, 0.5);
-  --button-background-color: rgba(255, 255, 255, 0.25);
-  --button-text-color: rgba(255, 255, 255, 0.75);
+  --content-body: #002B36;
+  --content-blue: rgba(255, 255, 255, 0.5);
+  --content-blue-dark: rgba(255, 255, 255, 0.75);
+  --content-red: #dc3545;
+  --content-green: #198754;
+  --content-white: rgba(0, 0, 0, 0.75);
+  --content-gray: #6c757d;
+  --content-gray-dark: #343a40;
+  --content-gray-light: #a9b6c2;
+  --content-success: #198754;
+  --content-info: #498484;
+  --content-danger: #f99aa3;
+  --content-light: rgba(255, 255, 255, 0.75);
+  --content-dark: rgba(0, 0, 0, 0.5);
+
+  --content-text-color: var(--content-light);
+  --entry-form-text-color: var(--content-light);
+
+  --button-background-color: var(--content-gray-light);
+  --button-text-color: var(--content-gray-dark);
   --button-border-color: transparent;
-  --button-focus-background-color: rgba(255, 255, 255, 0.5);
-  --button-focus-border-color: rgba(255, 255, 255, 0.5);
-  --button-small-background-color: rgba(255, 255, 255, 0.25);
-  --button-small-border-color: rgba(255, 255, 255, 0.25);
-  --button-small-focus-background-color: rgba(255, 255, 255, 0.55);
-  --button-small-focus-border-color: rgba(255, 255, 255, 0.55);
-  --content-focus-color: #FFF;
-  --entry-form-success-color: #F7F1ED;
-  --entry-form-error-color: #7d9fc1;
-  --entry-form-background-color: #002B36;
-  --entry-form-text-color: #F7F1ED;
-  --entry-form-button-background-color: #000;
-  --entry-form-button-border-color: #000;
-  --entry-form-button-text-color: #F7F1ED;
-  --entry-form-button-focus-background-color: #000;
-  --entry-form-button-focus-border-color: #000;
-  --entry-form-button-focus-text-color:  #F7F1ED;
+  --button-submit-border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --content-background-color: #00141A;
-    --content-th-background-color: rgba(255, 255, 255, 0.125);
-    --content-darkest-color: rgba(255, 255, 255, 0.5);
-    --button-background-color: rgba(255, 255, 255, 0.125);
-    --button-border-color: rgba(255, 255, 255, 0.125);
-    --button-text-color: rgba(255, 255, 255, 0.75);
-    --button-focus-background-color: rgba(255, 255, 255, 0.5);
-    --button-focus-border-color: rgba(255, 255, 255, 0.5);
-    --button-small-background-color: rgba(255, 255, 255, 0.25);
-    --button-small-focus-background-color: rgba(255, 255, 255, 0.55);
-    --content-focus-color: #FFF;
-    --entry-form-success-color: #F7F1ED;
-    --entry-form-error-color: #7d9fc1;
-    --entry-form-background-color: #002B36;
-    --entry-form-text-color: #F7F1ED;
-    --entry-form-button-background-color: #000;
-    --entry-form-button-border-color: #000;
-    --entry-form-button-text-color: #F7F1ED;
-    --entry-form-button-focus-background-color: #000;
-    --entry-form-button-focus-border-color: #000;
-    --entry-form-button-focus-text-color:  #F7F1ED;
+    --content-body: #00141A;
+    --content-blue: #a9b6c2;
+    --content-blue-dark: #f8f9fa;
+    --content-red: #dc3545;
+    --content-green: #198754;
+    --content-white: #000;
+    --content-gray: #6c757d;
+    --content-gray-light: #343a40;
+    --content-gray-dark: #a9b6c2;
+    --content-success: #2fbf7c;
+    --content-info: #6c757d;
+    --content-danger: #f99aa3;
+    --content-dark: rgba(255, 255, 255, 0.5);
+    --content-light: rgba(0, 0, 0, 0.5);
+    --content-text-color: var(--content-dark);
+    --entry-form-text-color: var(--content-dark);
+    --button-background-color: var(--content-gray-light);
+    --button-text-color: var(--content-gray-dark);
+    --button-border-color: transparent;
+    --button-submit-border-color: transparent;
   }
 }

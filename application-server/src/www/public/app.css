@@ -85,81 +85,90 @@
 html { width: 100%; height: 100% }
 body { width: 100%; height: 100%; min-height: 100%; background: var(--body-background-color); color: var(--body-text-color); padding: 0; margin: 0; font-family: 'Open Sans', sans-serif }
 /* menu, previously icon links with hover descriptions */
-menu { margin: 0; padding: 0 }
-menu div { display: inline-block }
-menu button { outline: 0; background-color: transparent; border: none; display: block; float: left; white-space: nowrap; color: inherit; margin: 0 0.5rem 0 0.5rem; height: 3rem; line-height: 3rem; padding: 0 0.75rem; opacity: 0.8; font-size: 0.9rem; cursor: pointer; border-radius: 0.5rem }
-menu button:hover { background-color: var(--menu-button-hover-background-color); color: var(--menu-button-hover-text-color) }
-menu button:focus { color: var(--menu-button-hover-text-color) }
-menu button.active { background-color: var(--menu-button-hover-background-color); color: var(--menu-button-hover-text-color) }
-menu button img { height: 1rem; width: 1rem; margin: 0.9rem 0.5rem 0 0; display: block; float: left }
+.app menu { margin: 0; padding: 0 }
+.app menu div { display: inline-block }
+.app menu button { outline: 0; background-color: transparent; border: none; display: block; float: left; white-space: nowrap; color: inherit; margin: 0 0.5rem 0 0.5rem; height: 3rem; line-height: 3rem; padding: 0 0.75rem; opacity: 0.8; font-size: 0.9rem; cursor: pointer; border-radius: 0.5rem }
+.app menu button:hover { background-color: var(--menu-button-hover-background-color); color: var(--menu-button-hover-text-color) }
+.app menu button:focus { color: var(--menu-button-hover-text-color) }
+.app menu button.active { background-color: var(--menu-button-active-background-color); color: var(--menu-button-hover-text-color) }
+.app menu button img { height: 1rem; width: 1rem; margin: 0.9rem 0.5rem 0 0; display: block; float: left }
+.app button:focus,
+.app input:focus,
+.app select:focus,
+.app textarea:focus { box-shadow: 0 0 0 0.2rem var(--template-focus-color) !important }
+
 /* list table */
-h2 { color: var(--heading-color); font-weight: normal }
-p { color: var(--text-color) }
-table { border-collapse: collapse }
-table, th, td { border: 1px solid var(--table-border-color) }
-th { background-color: var(--table-heading-background-color); color: var(--table-heading-text-color); text-transform: uppercase; font-size: 1rem }
-th, td { padding: 0.5rem; text-align: left }
-td,
-td a { color: var(--table-heading-text-color) }
+.app h2 { color: var(--heading-color); font-weight: normal }
+.app p { color: var(--text-color) }
+.app table { border-collapse: collapse }
+.app table, th, td { border: 1px solid var(--table-border-color) }
+.app th { background-color: var(--table-heading-background-color); color: var(--table-heading-text-color); text-transform: uppercase; font-size: 1rem }
+.app th, td { padding: 0.5rem; text-align: left }
+.app td,
+.app td a { color: var(--table-heading-text-color) }
 /* select fields via https://moderncss.dev/custom-select-styles-with-pure-css/*/
-.select-dropdown,
-.select-dropdown * { margin: 0; padding: 0; position: relative; box-sizing: border-box; }
-.select-dropdown { position: relative; background-color: var(--post-input-background-color); color: var(--post-input-text-color); border-radius: 0.25rem; display: inline-block }
-.select-dropdown select { color: var(--post-input-text-color); font-size: 1rem; font-weight: normal; max-width: 100%; padding: 0.5rem 1.5rem 0.5rem 0.5rem; border: none; background-color: transparent; appearance: none; }
-.select-dropdown select:active, .select-dropdown select:focus { outline: none; box-shadow: none; }
-.select-dropdown:after { content: ""; position: absolute; top: 50%; right: 8px; width: 0; height: 0; margin-top: -2px; border-top: 5px solid #aaa; border-right: 5px solid transparent; border-left: 5px solid transparent }
+.app .select-dropdown,
+.app .select-dropdown * { margin: 0; padding: 0; position: relative; box-sizing: border-box; }
+.app .select-dropdown { position: relative; background-color: var(--post-input-background-color); color: var(--post-input-text-color); border-radius: 0.25rem; display: inline-block }
+.app .select-dropdown select { color: var(--post-input-text-color); font-size: 1rem; font-weight: normal; max-width: 100%; padding: 0.5rem 1.5rem 0.5rem 0.5rem; border: none; background-color: transparent; appearance: none; }
+.app .select-dropdown select:active, .select-dropdown select:focus { outline: none; box-shadow: none; }
+.app .select-dropdown:after { content: ""; position: absolute; top: 50%; right: 8px; width: 0; height: 0; margin-top: -2px; border-top: 5px solid #aaa; border-right: 5px solid transparent; border-left: 5px solid transparent }
 /* additional content for post ids, organization ownership, listing, deleting */
 .content { padding: 20px }
-.form-padder { padding: 0.25rem }
-label.title { display: block; margin: 1rem 0 0.5rem 0 !important; font-weight: normal !important; font-size: 0.9rem !important }
-.post-information { padding: 1rem; margin: 0 }
-.post-information h2 { font-size: 1.2rem; font-weight: bold; margin: 0 }
-.post-information ul { margin: 0; padding: 0; list-style-type: none }
-.post-information li { list-style-type: none }
-.post-information label { margin-right: 0.5rem; font-weight: bold; font-size: 1rem }
-.post-information input[type=text] { border: none; margin-right: 0.5rem; width: 10rem; padding: 0.25rem 0.5rem; background-color: var(--post-input-background-color); color: var(--post-input-text-color); font-size: 1rem; font-weight: bold; border-radius: 0.25rem }
-.post-information button { display: inline-block; margin-right: 0.5rem; color: var(--post-button-text-color); background-color: var(--post-button-background-color); border: 1px outset var(--post-input-border-color); border-radius: 0.5rem; line-height: 2rem; font-size: 0.8rem; padding: 0 1rem; box-shadow: 0 0.125rem 0.125rem var(--post-button-shadow-color) }
-.post-information h2 button { margin-right: 0; margin-left: 0.5rem }
-.post-information div { margin-top: 0.5rem }
+.app .form-padder { padding: 0.25rem }
+.app label.title { display: block; margin: 1rem 0 0.5rem 0 !important; font-weight: normal !important; font-size: 0.9rem !important }
+.app .post-information { padding: 1rem; margin: 0 }
+.app .post-information h2 { font-size: 1.2rem; font-weight: bold; margin: 0 }
+.app .post-information ul { margin: 0; padding: 0; list-style-type: none }
+.app .post-information li { list-style-type: none }
+.app .post-information label { margin-right: 0.5rem; font-weight: bold; font-size: 1rem }
+.app .post-information input[type=text] { border: none; margin-right: 0.5rem; width: 10rem; padding: 0.25rem 0.5rem; background-color: var(--post-input-background-color); color: var(--post-input-text-color); font-size: 1rem; font-weight: bold; border-radius: 0.25rem }
+.app .post-information button { font-weight: bold; cursor: pointer; display: inline-block; margin-right: 0.5rem; color: var(--post-button-text-color); background-color: var(--post-button-background-color); border: 1px outset var(--post-input-border-color); border-radius: 0.5rem; line-height: 2.4rem; font-size: 0.8rem; padding: 0 2rem; text-transform: uppercase; box-shadow: 0 0.125rem 0.125rem var(--post-button-shadow-color) }
+.app .post-information button:hover { background-color: var(--post-button-hover-background-color); border-color: var(--post-button-hover-border-color); color: var(--post-button-hover-text-color); text-decoration: none }
+.app .post-information button:disabled { background-color: var(--post-button-disabled-background-color); color: var(--post-button-disabled-text-color); border: 1px solid var(--post-button-disabled-border-color) }
+.app .post-information button:focus { border-color: var(--post-button-focus-border-color); background-color: var(--post-button-focus-background-color); color: var(--post-button-focus-text-color) }
+.app .post-information h2 button { margin-right: 0; margin-left: 0.5rem }
+.app .post-information div { margin-top: 0.5rem }
 /* posts */
-.post-container { position: relative; padding: 13px 43px 100px 40px; max-width: 100%; overflow: auto }
-textarea { border-color: transparent; outline: 0; background-color: var(--textarea-background-color); color: var(--textarea-text-color); padding: 0; font-family: monospace; font-size: 13px; width: 100%; height: 40rem }
-#line-numbers { text-align: right; color: var(--line-numbers-text-color); z-index: -1000; position: absolute; top: 13px; left: 0; width: 30px }
-#line-numbers ol { padding-top: 0; margin: 0; font-family: monospace }
-#line-numbers li { font-size: 13px }
-#post-preview { padding: 0; margin: 0; width: 100%; border: 0; outline: none; font-size: 13px; overflow: inherit; background: transparent }
-#post-preview code { padding: 0; background: transparent !important }
+.app .post-container { position: relative; padding: 13px 43px 100px 40px; max-width: 100%; overflow: auto }
+.app textarea { border: 1px solid var(--textarea-border-color); outline: 0; background-color: var(--textarea-background-color); color: var(--textarea-text-color); padding: 0.5rem; box-sizing: border-box; font-family: monospace; font-size: 13px; width: 100%; height: 40rem }
+.app #line-numbers { text-align: right; color: var(--line-numbers-text-color); z-index: -1000; position: absolute; top: 13px; left: 0; width: 30px }
+.app #line-numbers ol { padding-top: 0; margin: 0; font-family: monospace }
+.app #line-numbers li { font-size: 13px }
+.app #post-preview { padding: 0; margin: 0; width: 100%; border: 0; outline: none; font-size: 13px; overflow: inherit; background: transparent }
+.app #post-preview code { padding: 0; background: transparent !important }
 /* solarized dark theme, Original Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com> */
-.hljs { display: block; overflow-x: auto; padding: 0.5em }
-.hljs-comment, .hljs-quote { color: var(--hljs-quote) }
-.hljs-keyword, .hljs-selector-tag, .hljs-addition { color: var(--hljs-olive); }
-.hljs-number, .hljs-string, .hljs-meta .hljs-meta-string, .hljs-literal, .hljs-doctag, .hljs-regexp { color: var(--hljs-green) }
-.hljs-title, .hljs-section, .hljs-name, .hljs-selector-id, .hljs-selector-class { color: var(--hljs-blue) }
-.hljs-attribute, .hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-class .hljs-title, .hljs-type { color: var(--hljs-yellow) }
-.hljs-symbol, .hljs-bullet, .hljs-subst, .hljs-meta, .hljs-meta .hljs-keyword, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-link { color: var(--hljs-orange) }
-.hljs-built_in, .hljs-deletion { color: var(--hljs-red) }
-.hljs-formula { background: var(--hljs-gray) }
-.hljs-emphasis { font-style: italic; }
-.hljs-strong { font-weight: bold; }
+.app .hljs { display: block; overflow-x: auto; padding: 0.5em }
+.app .hljs-comment, .hljs-quote { color: var(--hljs-quote) }
+.app .hljs-keyword, .hljs-selector-tag, .hljs-addition { color: var(--hljs-olive); }
+.app .hljs-number, .hljs-string, .hljs-meta .hljs-meta-string, .hljs-literal, .hljs-doctag, .hljs-regexp { color: var(--hljs-green) }
+.app .hljs-title, .hljs-section, .hljs-name, .hljs-selector-id, .hljs-selector-class { color: var(--hljs-blue) }
+.app .hljs-attribute, .hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-class .hljs-title, .hljs-type { color: var(--hljs-yellow) }
+.app .hljs-symbol, .hljs-bullet, .hljs-subst, .hljs-meta, .hljs-meta .hljs-keyword, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-link { color: var(--hljs-orange) }
+.app .hljs-built_in, .hljs-deletion { color: var(--hljs-red) }
+.app .hljs-formula { background: var(--hljs-gray) }
+.app .hljs-emphasis { font-style: italic; }
+.app .hljs-strong { font-weight: bold; }
 /* mobile tweaks */
 @media (max-width: 960px) {
-  .mast h2 { font-size: 2.4rem; line-height: 3.2rem }
-  .post-information h2 { font-size: 0.8rem; font-weight: normal }
-  menu button { font-size: 0.7rem !important; padding: 0 0.5rem !important; margin: 0 0 0 1rem !important }
+  .app .mast h2 { font-size: 2.4rem; line-height: 3.2rem }
+  .app .post-information h2 { font-size: 0.8rem; font-weight: normal }
+  .app menu button { font-size: 0.7rem !important; padding: 0 0.5rem !important; margin: 0 0 0 1rem !important }
 }
 /* mobile tweaks */
 @media (max-width: 640px) {
-  .post-information { padding: 0.5rem }
-  input[type=text], select { width: 100% }
+  .app .post-information { padding: 0.5rem }
+  .app input[type=text], select { width: 100% }
 }
 
-::placeholder { color: var(--post-input-text-color); opacity: 1; font-weight: normal }
+.app ::placeholder { color: var(--post-input-text-color); opacity: 1; font-weight: normal }
 
 /* color settings */
 :root {
   --body-background-color: #002B36;
   --body-text-color: rgba(255, 255, 255, 0.75);
-  --menu-button-hover-background-color: rgba(0, 0, 0, 0.75);
+  --menu-button-active-background-color: #1d3434;
+  --menu-button-hover-background-color: #2c4b4b;
   --menu-button-hover-text-color: rgba(255, 255, 255, 0.75);
   --heading-color: rgba(255, 255, 255, 0.5);
   --text-color: rgba(255, 255, 255, 0.5);
@@ -167,14 +176,21 @@ textarea { border-color: transparent; outline: 0; background-color: var(--textar
   --table-heading-background-color: rgba(255, 255, 255, 0.5);
   --table-heading-text-color: rgba(0, 0, 0, 0.75);
   --table-link-text-color: rgba(255, 255, 255, 0.75);
-  --line-numbers-text-color: rgba(55, 255, 255, 0.5);
-  --textarea-background-color: rgba(0, 0, 0, 0.25);
-  --textarea-text-color: rgba(255, 255, 255, 0.75);
-  --post-input-background-color: rgba(255, 255, 255, 0.125);
-  --post-input-text-color: rgba(255, 255, 255, 0.75);
-  --post-button-background-color: rgba(255, 255, 255, 0.25);
-  --post-button-text-color: rgba(255, 255, 255, 0.75);
-  --post-button-shadow-color: rgba(0, 0, 0, 0.25);
+  --line-numbers-text-color: rgba(255, 255, 255, 0.5);
+  --textarea-background-color: #2C4B4B;
+  --textarea-border-color: rgba(255, 255, 255, 0.25);
+  --textarea-text-color: var(--content-white);
+  --post-input-background-color: rgba(255, 255, 255, 0.75);
+  --post-input-text-color: rgba(0, 0, 0, 0.75);
+  --post-button-background-color: rgba(255, 255, 255, 0.5);
+  --post-button-text-color: rgba(0, 0, 0, 0.75);
+  --post-button-border-color: rgba(255, 255, 255, 0.5);
+  --post-button-hover-background-color: rgba(255, 255, 255, 0.75);
+  --post-button-hover-text-color:  #000;
+  --post-button-hover-border-color: rgba(255, 255, 255, 0.75);
+  --post-button-focus-background-color: rgba(255, 255, 255, 0.5);
+  --post-button-focus-text-color:  #000;
+  --post-button-focus-border-color: rgba(255, 255, 255, 0.75);
   --hljs-quote: #586E75;
   --hljs-olive: #859900;
   --hljs-green: #2AA198;
