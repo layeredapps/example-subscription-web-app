@@ -46,5 +46,10 @@
     --template-navigation-link-icon-filter: var(--template-svg-white);
     --template-navigation-link-focus-icon-filter: var(--template-svg-white);
     --template-navigation-link-focus-text-color: var(--template-white);
+    --template-navigation-link-hover-text-color: var(--template-dark);
+    --template-navigation-link-hover-icon-filter: var(--template-svg-white);
+    --template-navigation-current-page-link-text-color: var(--template-dark);
+    --template-navigation-current-page-link-background-color: var(--template-blue);
+    --template-navigation-current-page-icon-filter: var(--template-svg-white);
   }
 }

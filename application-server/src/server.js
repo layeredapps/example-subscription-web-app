@@ -76,20 +76,19 @@ async function staticFile (req, res) {
   if (!mimeType) {
     return throw500(req, res)
   }
-  let blob
-  if (!process.env.HOT_RELOAD) {
-    blob = fileCache[filePath]
-  }
+  let blob = fileCache[filePath]
   if (blob) {
     res.setHeader('content-type', mimeType)
     return res.end(blob)
   }
   if (!fs.existsSync(filePath)) {
-    return throw404(req, res)
+    res.statusCode = 404
+    return res.end()
   }
   const stat = fs.statSync(filePath)
   if (stat.isDirectory()) {
-    return throw404(req, res)
+    res.statusCode = 404
+    return res.end()
   }
   blob = fs.readFileSync(filePath)
   fileCache[filePath] = blob
@@ -126,12 +125,18 @@ async function receiveRequest (req, res) {
     req.query = querystring.parse(req.url.substring(question + 1), '&', '=')
   }
   req.urlPath = req.url.split('?')[0]
-  if (req.urlPath === '/') {
+  if (req.urlPath === '/' || req.urlPath === '/index.html') {
     res.setHeader('content-type', 'text/html')
     return res.end(indexPage)
   }
   if (req.urlPath === '/favicon.ico' ||
       req.urlPath === '/robots.txt' ||
+      req.urlPath === '/stripe-element-style.json' ||
+      req.urlPath === '/template.html' ||
+      req.urlPath === '/error.html' ||
+      req.urlPath === '/redirect.html' ||
+      req.urlPath === '/menu-administrator.html' ||
+      req.urlPath === '/menu-account.html' ||
       req.urlPath.startsWith('/public/')) {
     return staticFile(req, res)
   }
