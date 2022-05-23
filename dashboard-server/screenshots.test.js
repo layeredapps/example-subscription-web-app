@@ -355,7 +355,7 @@ describe('example-subscription-web-app screenshots', () => {
     global.userProfileFields = ['display-name', 'display-email']
     global.membershipProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user, {
-      'display-name': user.profile.firstName,
+      'display-name': user.profile.fullName,
       'display-email': user.profile.contactEmail
     })
     await TestHelperOrganizations.createOrganization(user, {
@@ -368,7 +368,7 @@ describe('example-subscription-web-app screenshots', () => {
     const user2 = await TestHelper.createUser()
     global.userProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user2, {
-      'display-name': user2.profile.firstName,
+      'display-name': user2.profile.fullName,
       'display-email': user2.profile.contactEmail
     })
     await TestHelperOrganizations.acceptInvitation(user2, user)
@@ -409,7 +409,7 @@ describe('example-subscription-web-app screenshots', () => {
     global.userProfileFields = ['display-name', 'display-email']
     global.membershipProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user, {
-      'display-name': user.profile.firstName,
+      'display-name': user.profile.fullName,
       'display-email': user.profile.contactEmail
     })
     await TestHelperOrganizations.createOrganization(user, {
@@ -456,7 +456,7 @@ describe('example-subscription-web-app screenshots', () => {
     const user2 = await TestStripeAccounts.createUserWithPaidSubscription(owner.plan)
     global.userProfileFields = ['display-name', 'display-email']
     await TestHelper.createProfile(user2, {
-      'display-name': user2.profile.firstName,
+      'display-name': user2.profile.fullName,
       'display-email': user2.profile.contactEmail
     })
     await TestHelperOrganizations.acceptInvitation(user2, user)
